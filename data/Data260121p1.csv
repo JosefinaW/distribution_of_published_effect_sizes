@@ -1,0 +1,412 @@
+﻿StudyID,OwnData,Journal,Year,Volume,PageN,FirstAuthor,topic,MultipleStudies,tpf (total FINAL participants),Groups,General_notes,AlternativeHypothesis,"NullHypothesis (mentioned 1, not mentioned 0)",CommentsHypotheses,TypesCorrelation,CommentsCorrelation,apri_powercalculation,power_test,Effect_sizes for power calculations,Power_comments,Preregistration,Replication_exp_in_paper,comments_from_paper
+1,1,ChildDev,2019,90/1,25,Sun,"development, siblings",,152,,sample-152 families drawn from a larger longitudinal study,directional,0,,Pearson ,Correlation Table present in supplementary material,0,,,,,,
+2,1,ChildDev,2019,90/1,35,Psouni,"development, verbal ability",exp2,95,45;50,,directional,0,,Pearson,,0,,,,,,
+3,1,ChildDev,2019,90/1,35,Psouni,"development, verbal ability",exp3,59,29;30,,directional,0,,Pearson,,0,,,,,1,
+4,1,ChildDev,2019,90/1,62,Seaton,gender race,,344,,,explorative,0,,NA,,0,,,,,,
+5,1,ChildDev,2019,90/1,108,Elenbaas,"development, equity",,72,,,"directional, mediation",0,,Pearson?,,1,,,Mention a priori power calculation in participant section and that details will follow but I haven't found details anywhere else in the text,,,
+6,0,ChildDev,2019,90/1,117,Aizpitarte,"development, aggression",,674,NA,"longitudinal study, number of participating families differed across 4 time points but it is not mentioned how was differential participation dealt with
+
+""Retention rates (relative to
+the original sample of 674) were 86% at age 12,
+91% at age 14, and 90% at age 16.""",explorative,0,vague stating of hypotheses,NA,Some correlations evidently calculated but not present in supplementary material or within the paper,0,,,,,,"while hypotheses explorative, it is not mentioned they are"
+8,0,JPSP,2019,116/2,313,Gerlach,mate preferences,,763,,data from the Göttingen Mate Choice Study,"directional, moderation, explorative",0,,NA,some correlations done with only a subset of participants,0,,,,,,
+9,0,JPSP,2019,116/2,331,Deventer,"personality, relationships",,4373,,"sample size not very clear, could also be 4534 ",directional,0,,Pearson,,0,,,,,,
+10,1,JPSP,2019,116/2,167,Doyle,"gender, sexism",exp7,211,,,directional,0,,Pearson,Keeps mentioning correlations in previous experiments within the paper but cannot find the report of those,1,F,0.2 (partial eta squared),"""sensitivity analysis indicated a sensitivity
+to detect an effect size of  partial eta squared =  .02 with 80% power and alpha
+equal to .05""",,,
+11,1,JPSP,2019,116/2,237,Muise,relationships,exp1,244,,"the study reports participant number as 122 couples but both partners seem to have taken part, hence the tpf 244 but this was not clarified within the text -> seems slightly weird that they do not mention anyone leaving during the study even though its longitudinal","directional, explorative",0,,Pearson,,0,,,,,,
+12,1,JPSP,2019,116/2,237,Muise,relationships,exp2,236,,118 couples -> seems slightly weird that they do not mention anyone leaving during the study even though its longitudinal,directional,0,,Pearson,,0,,,,,1,"""In Study 2, we aimed to replicate
+these daily findings and we extended the previous study by following
+up with participants immediately after the 21-day daily
+experience study as well as 3 months later to test whether selfexpansion
+over the course of the diary predicted changes in sexual
+desire, relationship satisfaction, and sexual satisfaction over time."""
+13,0,JPSP,2019,116/2,277,Wolfer,"intergroup contact, intergroup anxiety",exp1,560,,,directional,0,,NA,"even though sample sizes differ across studies, according to the table all correlations are significant at same magnitudes of correlation coefficient and at alpha >0.05",0,,,,,,
+14,0,JPSP,2019,116/2,277,Wolfer,"intergroup contact, intergroup anxiety",exp2,6600,4390;2210,"majority 4390, minority 2210",directional,0,,NA,"even though sample sizes differ across studies, according to the table all correlations are significant at same magnitudes of correlation coefficient and at alpha >0.05",0,,,,,1,
+15,0,JPSP,2019,116/2,277,Wolfer,"intergroup contact, intergroup anxiety",exp3,1593,,,"directional, mediation",0,,NA,"even though sample sizes differ across studies, according to the table all correlations are significant at same magnitudes of correlation coefficient and at alpha >0.05",0,,,,,,
+16,0,JPSP,2019,116/2,277,Wolfer,"intergroup contact, intergroup anxiety",exp4,404,,,directional,0,,NA,"even though sample sizes differ across studies, according to the table all correlations are significant at same magnitudes of correlation coefficient and at alpha >0.05",0,,,,,,
+17,0,JPSP,2019,116/2,277,Wolfer,"intergroup contact, intergroup anxiety",exp5,735,,,"directional, mediation",0,,NA,"even though sample sizes differ across studies, according to the table all correlations are significant at same magnitudes of correlation coefficient and at alpha >0.05",0,,,,,1,
+18,1,JPSP,2019,116/1,101,Park,"meditation, mindfulness, mortality salience",exp1,295,61;55;62;62;50,I cannot reach the given tpf out of the participant numbers given for different conditions,"directional, explorative",0,,Pearson,unclear what N was used for the correlation values,0,,,,,,
+19,1,JPSP,2019,116/1,101,Park,"meditation, mindfulness, mortality salience",exp2,96,48;48,"not actually mentioned number of participants per group, just total and that they were divided into two groups",explorative,0,,Pearson,,0,,,,,,
+20,1,JPSP,2019,116/1,101,Park,"meditation, mindfulness, mortality salience",exp3,129,,,directional,0,,Pearson,,1,F,.3,"checked in Gpower as ANOVA: fixed effects, special, main effects and interactions for 2 groups and numerator df 4. They also did a second power analysis for linear regression -> in either of those they do not say what type of effect size they are using so not completely sure whether it is correct but may be linear multiple regression, deviation from 0, for 26 predictors (seems like too many though)",,,
+21,1,JPSP,2019,116/1,119,Rovenpor,"intergroup conflict, meaning",exp2,288,,"mix of longitudinal and cross-sectional design -> 151 participants at T1, out of those, 86 responded at T2, addditionally 137 new participants responded at T2",explorative,0,,Pearson,,0,,,,,,
+22,1,JPSP,2019,116/1,119,Rovenpor,"intergroup conflict, meaning",exp4,203,,,"directional, explorative",0,,Pearson,,0,,,,,1,conceptual replication
+23,1,JPSP,2019,116/1,141,Kachanoff,"collective autonomy, psychological well-being",exp1,622,123;129;370,,directional,0,,Pearson,,0,,,"mentions power and having certain number of participants for sufficient power but does not include actual calculation 
+
+""To have optimal statistical
+power for this analysis (n  400 per group, Meade, 2005) we combined the
+total sample of Study 1 with the sample utilized in Study 3, which also
+included participants from collectivistic and individualistic countries and
+conducted the invariance analysis.""",,,
+24,1,JPSP,2019,116/1,141,Kachanoff,"collective autonomy, psychological well-being",exp2,411,,"longitudinal design, 6 waves",directional,0,,NA,,0,,,,,,
+25,1,JPSP,2019,116/1,141,Kachanoff,"collective autonomy, psychological well-being",exp3,255,120;135,experimental,"directional, generalizability",0,,NA,,0,,,,,,
+26,1,JPSP,2019,116/1,141,Kachanoff,"collective autonomy, psychological well-being",exp4,389,131;120;138,experimental,directional,0,,NA,there seems to be a mistake with significance levels at the correlation table. Both * and ** are said to be p<0.01. I presume * should have been 0.05 as in other correlation tables in this study,0,,,,,,
+27,1,ChildDev,2019,90/1,127,Perry,"play partners, development, aggression",,164,,two samples collected within the research group in context of larger studies,directional,0,,NA,,0,,,,,?,mentions replication using teacher reports but not sure if this can be considered a replication
+28,0,ChildDev,2019,90/1,136,Tsotsi,"development, maternal parenting stress, child exuberance",,256,,,explorative,0,,NA,"not all correlation values calculated from strictly participant data
+
+""Of the 256 participants, 204 had completed data
+sets for all variables. Twenty-three participants had
+missing data for maternal PSI, 22 for maternal
+CBCL reports, two for maternal education, four for
+both maternal PSI and maternal CBCL reports, and
+one for both maternal education and maternal
+CBCL reports. Given that Little’s missing completely
+at random test was not significant,
+v2(38) = 37.58, p = .49, indicating missingness completely
+at random, we proceeded with estimationmaximization
+for imputing the missing values
+(Rubin, Witkiewitz, Andre, & Reilly, 2007).""",0,,,,,,"Of the 256 participants, 204 had completed data
+sets for all variables. Twenty-three participants had
+missing data for maternal PSI, 22 for maternal
+CBCL reports, two for maternal education, four for
+both maternal PSI and maternal CBCL reports, and
+one for both maternal education and maternal
+CBCL reports. Given that Little’s missing completely
+at random test was not significant,
+v2(38) = 37.58, p = .49, indicating missingness completely
+at random, we proceeded with estimationmaximization
+for imputing the missing values
+(Rubin, Witkiewitz, Andre, & Reilly, 2007)."
+29,0,ChildDev,2019,90/1,180,Godfrey,"development, adolescence, self-esteem, ",,257,,,"directional, moderation,explorative",0,,NA,,0,,,,,,
+30,0,ChildDev,2019,90/1,227,Labella,"development, homelssness, socio-emotional adjustment",,245,,,directional,0,,"Pearson, Spearman",in correlation tables not clear which values were significant at 0.01 and which at 0.001 because both are denoted by **,0,,,,,,
+31,1,ChildDev,2019,90/1,260,Wolf,"SES, parental investment",,2137,,,"directional, explorative",0,,NA,correlation between school involvement and number of bokks in the home is missing from the correlation table,0,,,,,,
+32,0,JCPP,2019,60/3,267,Dirks,"sibling aggression, peer aggression",,1524,,,explorative,0,does not seem to have any concrete hypotheses but does not mention explicitly that the study is explorative,NA,,0,,,,,,
+33,1,JCPP,2019,60/3,277,Dobwell,"parental emotional warmth, gene-environment correlations",,3727,2349;1378,,explorative,0,,the SNP-based gene–environment correlation (h2),,1,,,"power analysis for GCTA-GREML analysis 
+
+""(http://cnsgenomics.com/shiny/gctaPowe
+r/; Visscher et al., 2014) revealed a 40% chance of detecting an
+SNP based rGE estimate of 0.23 in G1. The chance to detect a
+heritability estimate with the same size of G2 was remarkably
+smaller (17%).""",,,
+34,1,JCPP,2019,60/3,286,Moll,"learning disorders, mathematics disorder, reading disorder, comorbidity",,1454,,,directional,0,,Pearson,,0,,,,,,
+35,1,JCPP,2019,60/3,314,Wolff,"autism, restricted and repetitive behaviour, ",,466,74;257;135,,explorative,0,,Spearman,"participant numbers for correlations not clear
+
+some correlations not reported (e.g. Correlation between variable 7 and 8)",0,,,,,,
+36,1,JCPP,2019,60/5,555,Scheper,"disinhibited social engagement behavior, development",,124,,,explorative,0,,"Spearman, point-biserial",,0,,,,,,
+37,1,DevPsy,2019,55/1,9,Friend,"language, vocabulary comprehension, language skills",exp1,44,,,directional,0,,Pearson,some correlations in text in format r=,1,r,"0.539, 0.605","used correlations detected in previous paper (Friend et al., 2012) as effect size for power analysis; zero order correlations reported in the previous paper would mean that the sample can be actually lower but if using correlations controlling  for other variables, sample size would not be sufficient",,,
+38,1,DevPsy,2019,55/1,9,Friend,"language, vocabulary comprehension, language skills",exp2,60,,,directional,0,,Pearson,some correlations in text in format r=,0,,,,,,
+39,0,DevPsy,2019,55/1,38,Fujisawa,"behavioural genetics, school readiness, twins",,306,,"not all participated during all waves of assessment, number of participants is number of twin pairs",explorative,0,,structural equation modelling,participant numbers for correlations not clear,0,,,,,,
+40,1,DevPsy,2019,55/1,110,Speidel,"maternal sensitivity, child maltreatment",,176,,,"directional, mediation",0,,NA,,0,,,,,,
+41,1,DevPsy,2019,55/1,123,Vertsberger,"parenting, distress to limitations, prenatal expectations",,539,,not all participants were included at all waves,"directional, explorative",0,,Pearson,,0,,,,,,
+42,1,SPPS,2019,10/2,144,Tip,"intergroup contact, well-being",exp1,180,,,"directional, mediation",0,,NA,,0,,,,,,
+43,1,SPPS,2019,10/2,160,Kunst,"dehumanization, physical height, social dominance",,381,,,directional,0,,NA,,1,F,f2=0.05,"Gpower Linear multiple regression, fixed model R2 increase with f2 = 0.05, power = .9, tested predictors = 3, total n of predictors =6",,,
+44,1,SPPS,2019,10/2,172,Zitek,"psychological entitlement, compliance, personality",exp1,202,,,directional,0,,NA,,0,,,,,,
+45,1,SPPS,2019,10/2,172,Zitek,"psychological entitlement, compliance, personality",exp2,157,,,directional,0,,NA,"in paper p<0.1 still considered significant, in supplementary material its only p<0.05",0,,,,,,
+46,1,SPPS,2019,10/2,172,Zitek,"psychological entitlement, compliance, personality",exp3,300,,,directional,0,,NA,,0,,,,,,
+47,1,SPPS,2019,10/2,172,Zitek,"psychological entitlement, compliance, personality",exp4,401,,,directional,0,,NA,,0,,,,,,
+48,1,SPPS,2019,10/2,172,Zitek,"psychological entitlement, compliance, personality",exp5,199,,,explorative,0,,NA,,0,,,,,,
+49,1,SPPS,2019,10/2,172,Zitek,"psychological entitlement, compliance, personality",exp6,203,,,explorative,0,,NA,,0,,,,,,
+50,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp2,650,400;250,two samples,directional,0,,Pearson,mention some correlations as r=,0,,,,,,
+51,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp3,400,,"the study keeps recyclating the same sample from study 1
+
+paper includes more studies but for the sake of looking through more than one paper from EJP I moved on for now.","directional, explorative",0,,NA,mention some correlations as r=,0,,,,1,specify their Ha as lower/higher/equals 0,
+52,0,EJP,2019,33,133,Krizan,"sleep, personality traits, variability",,382,,MIDUS II national survey participants who also had actigraph measurement of sleep,directional,0,,NA,,1,r,,a posteriori,,,
+53,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp1,400,,,exploratory factor analysis,0,,Pearson,mention some correlations as r=,1,r,0.2,I tried to calculate it in Gpower but no luck (power is 0.8),,,unclear whether they are doing EFA or CFA
+54,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp4,939,,participants from different samples from other studies within teh article,"directional, explorative",0,,Pearson,mention some correlations as r=,0,,,,,,
+55,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp5,250,,participants from sample for exp 2,directional,0,,Pearson,mention some correlations as r=,0,,,"'The sample size (n = 250) was determined by the smallest effect
+size for any DoPL motive in a pilot study (SOM for
+Study 5) of the DGs neutral condition.'",1,,
+56,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp6,550,,participant numbers for supplementary materials don't add up,directional,0,,Pearson,mention some correlations as r=,0,,,,1,,preregistered but could not follow preregistered study plan completely
+57,1,EJP,2019,33,7,Suessenbach,"power motive, leadership, dominance",exp7,828,278;550,"'Participants were full-time employees of various professions
+(e.g. sales assistant, manager, lecturer, accountant, and soldier)
+from the US (sample #4, n = 278) and the UK (sample
+#5, n = 550; Table 1).''",directional,0,,Spearman,,0,,,,,,
+58,1,JPSP,2019,116/2,167,Doyle,"gender, sexism",exp6,283,,,directional (but some predicting both directions),0,,Pearson,,0,,,,,,
+59,1,ChildDev,2019,90/1,1,Adamson,"autism, attention",,144,58;46;40,,"directional, explorative",0,"difficult to tell what are hypothesized outcomes, specified in terms of aims, general, seems it does not apply to reported corr",NA,correlations are between interaction rating items,0,,,,,,
+60,0,ChildDev,2019,90/1,114,Chen,attribution bias,,913,,"""Participants were a subsample of 913 study children
+drawn from the full sample of 1,364 children
+participating in the NICHD SECCYD.""",directional,0,,NA,,0,,,,,,
+61,1,ChildDev,2019,90/1,96,Dennison,"childhood adversity, deprivation, reward processing",,94,,"""Of these, 52 without MRI contraindications
+(e.g., orthodontic braces) and who were at least
+8 years old were invited to complete an MRI assessment""",directional,0,,bivariate,,0,,,,,,
+62,1,ChildDev,2019,90/1,148,Gweon,"exploration, demonstrations",exp1,48,24;24,"mention 8 children being excluded but not clear from which condition and analyses are using the full ""recruited"" number oéf participants…",directional,0,not related to corr,NA,,1,,0.7,power 0.7,,,"Re Power only this info provided: ""We recruited 48 children (N = 24/condition), sufficient
+for a power of .7 assuming reasonably large
+effect size (Cohen’s d = .7)."""
+63,1,ChildDev,2019,90/1,148,Gweon,"exploration, demonstrations",exp2,50,25;25,,directional,0,,NA,,0,,,,,,"Mistaking whether something correlates with whether it correlation is significant ""In the Ordinary condition,
+the Informativeness Score correlated positively with
+children’s age (r(23) = .44, p = .026); this was not
+true in the Exceptional condition (r(23) = .203,
+p = .331),"""
+64,1,ChildDev,2019,90/1,80,Hibel,"stress, cortisol",,117,60;57,,directional,0,,NA,has very weird p-values in corr table,0,,,,,,
+65,0,ChildDev,2019,90/1,245,Lee,"religiosity, growth patterns",,1595,,,"directional, ",0,,interfactor,,0,,,,,,
+66,1,ChildDev,2019,90/1,37,Miconi,"working memory, prosocial behaviour, interdependence",,488,,,directional,0,,Pearson,,0,,,,,,
+67,0,ChildDev,2019,90/1,298,Narr,"peer group, friendship, mental health",,169,,sample drawn from a larger longitudinal investigation,directional,0,,NA,correlations part of preliminary analysis,0,,,,,,
+68,0,ChildDev,2019,90/1,56,Przybylski,"screen time, well-being",,19957,,"Data were provided through telephone interviews
+collected as part of the 2011–2012 National
+Survey of Children’s Health (NSCH; National Center
+for Health Statistics, 2016).",directional,0,research questions instead of hyp,Kendall's tau-b,,0,,,,,,"comment on large N and significance:  ""Despite a number of significant
+links, these exploratory zero-order correlations
+should be interpreted with caution because of
+the small effect sizes (all rsT < .032) and large sample
+size (n = 19,935). They likely reflect the large
+number of tests which did not adjust for familywise
+error (i.e., the false-positive rate).""
+
+comments on adjusting critical threshold: ""Because eight tests
+were conducted and we were working with a large
+sample size, we adjusted the p-value threshold for
+rejecting the null hypothesis from .05 to .00625 in
+line with best practices (Holm, 1979)."""
+69,1,ChildDev,2019,90/1,162,Setoh,"racial categorization, racial bias, preschool",exp1,87,,,directional,0,,NA,correlation a side product of regression analysis,0,,,,,,
+70,1,ChildDev,2019,90/1,162,Setoh,,exp2,71,,,"exlorative, directional",0,,NA,correlation a side product of regression analysis,0,,,,,,
+71,0,ChildDev,2019,90/1,279,Wagner,"maternal sensitivity, conduct problems, cortisol",,1234,,data from Family Life Project,directional,0,,Pearson?,not mentioned type but reported as r =,0,,,,,,
+72,0,ChildDev,2019,90/1,19,Wang,"cultural socialization, ethnic feeling",,214,,,explorative,0,,NA,weir p-values in corr table,0,,,,,,
+73,0,ChildDev,2019,90/1,196,Wellman,"awareness, comprehension",,1707,,"CHILDES database (MacWhinney & Snow, 1990). - 13 children but analysis done on the number of conversations",explorative,0,,NA,not mentioned type but reported as r =,0,,,,,,
+74,0,DevPsy,2019,55/1,23,Halpin,"learning, cultural differences",,4970,2629;480;682;504;675,,explorative,0,RQs related to invariance of measures,NA,correlations among factors,0,,,,,,
+75,0,DevPsy,2019,55/1,157,Zhou,ethnic identity,,527,315;312,,directional,0,,NA,not clear N for specific corr,0,,,,,,
+76,0,DevPsy,2019,55/1,170,Martin,"drug use, alcohol use, family stress",,478,,,directional,0,hypotheses related to corr not clearly stated in the section focused o hypotheses,NA,some corr given as r=,0,,,,,,
+77,1,DevPsy,2019,55/1,184,Teng,"moral disengagement, violent video games, aggression",,1340,,,directional,0,,NA,,1,r,0.1,"""Sample size was determined using Gpower (Version 3.1; Faul,
+Erdfelder, Buchner, & Lang, 2009). Our final sample size of 1,086
+gives ample statistical power (90%) to detect small relations
+(r  .10) between key study variables.""",,,
+78,1,DevPsy,2019,55/1,196,Kim,"conscientiousness, effortful control, compliance",,102,,,directional,0,hypothesis very unclear and vague,,,0,,,,,,
+79,0,DevPsy,2019,55/1,207,Ha,"coercion, parenting, romantic relationships",,230,115;115,,explorative,0,,NA,some corr given as r=,0,,,,,,
+80,0,DevPsy,2019,55/1,216,Hintsanen,"compassion, parent-child relationship",,2761,,"Participants were drawn from the ongoing Young Finns Study
+(YFS; Raitakari et al., 2008).",directional,0,,Pearson,,0,,,,,,
+81,1,JCPP,2019,60/1,82,Kujawa,"reward, ERP, depression",,369,,,explorative,0,"not identified as explorative - ""The primary goal was to examine
+whether RR moderates or mediates the effects of
+parental depression on changes in offspring depressive
+symptoms from late childhood to early adolescence.""",NA,,0,,,,,,
+82,1,JCPP,2019,60/1,43,Miller,"temperament, ADHD",,291,,,directional,0,,NA,,0,,,,,,
+83,1,JCPP,2019,60/1,30,Priel,"maternal depression, oxytocin",,1983,,but many less in subsequent waves,directional,0,not related to corr,Pearson,the sample sizes for different waves complicated,0,,,,,,
+84,1,JPSP,2019,116/1,1,Uchida,"culture, farming, collective activities",,7295,3132;1917;1324,,directional,0,,Pearson,,1,,,"""The sample size was determined based on Maas and Hox’s
+(2005) estimation of sufficient sample sizes for a multilevel analysis.""",,,
+85,1,JPSP,2019,116/1,46,Morris,"learning, metacognition",,213,,,directional,0,,NA,,0,,,,,,
+86,1,JPSP,2019,116/1,69,Murray,"transition to parenthood, partner attitudes",,202,,"""At Time 1, expectant couples completed a
+preliminary survey at home, in-laboratory measures, and a 2-week
+daily diary study. At Time 2, 148 couples completed the inlaboratory
+measures and 151 couples completed the preliminary
+survey and 2-week daily diary measures at home. At Time 3, 6
+weeks after the postbirth assessment, 137 couples completed the
+first of five online surveys (administered every 8 weeks thereafter,
+NTime 4  134, NTime5  127, NTime6  120, NTime7  122).""",directional,0,,NA,corr given as r =,0,,,,,,
+87,1,SPPS,2019,10/2,193,Cavallo,"self-esteem, social suppor, interpersonal",,393,199;194,,"directional, mediation",0,,NA,,0,,,,,,
+88,1,SPPS,2019,10/2,211,Landy,"disgust sensitivity, emotion, moral judgment",exp1,202,,,directional,0,,NA,,0,,,"""In all studies, we
+aimed to recruit approximately 200–300 participants, because
+correlations stabilize as sample sizes approach 250 (Scho¨nbrodt
+& Perugini, 2013), and data collection was terminated
+prior to conducting any analyses.""",,1,
+89,1,SPPS,2019,10/2,211,Landy,"disgust sensitivity, emotion, moral judgment",exp2,200,,measure of one variable not included in the measures section,directional,0,,NA,corr given as r =,0,,,,,,
+90,1,SPPS,2019,10/2,211,Landy,"disgust sensitivity, emotion, moral judgment",exp3,300,,,directional,0,,NA,corr given as r =,0,,,,,,
+91,1,SPPS,2019,10/2,211,Landy,"disgust sensitivity, emotion, moral judgment",exp4,251,,,directional,0,,NA,,0,,,,,,
+92,1,SPPS,2019,10/2,220,Feldman,"lie scales, honesty, dishonesty",,262,,,explorative,0,,NA,,1,t,d=.35,"power analyses availaible in the preregistration documents online: https://
+osf.io/7gnfe/ -> ""G-power analysis based on the calculation of minimum sample size for power .99 and alpha .05 for a weak-medium effect (d = .35; g = .15)""",1,,
+93,1,SPPS,2019,10/2,227,Miller,"expertise bias, decision making",,1123,619;504,,directional,0,not clear how hypothesis relates to corr,Pearson,,1,"t, f","d=.20, f^2 =.02","""effect size in a t test (Cohen’s d ¼ .20) at .80 power, a sample
+size of 310 per group would be required (Soper, 2017b). The t
+tests in this study compare the judicial sample (n ¼ 619) to the
+lay sample (n ¼ 504), so the group sizes far exceed this suggested
+minimum.""
+
+A priori power analysis suggested that in order to detect a
+small effect size in multiple regression (Cohen’s f2 ¼ .02) at
+.80 power with an interaction term (three total predictors), a
+sample size of 543 would be required (Soper, 2017a); in order
+to detect a medium effect size (Cohen’s f2 ¼ .15) under these
+conditions, a sample size of 76 would be required. This study
+included regression analyses with an interaction term among
+the judicial sample alone (n ¼ 619) and among the combined
+judicial and lay samples (N ¼ 1,123).",,,
+94,0,SPPS,2019,10/2,235,Hadden,"close relationships, commitment",,422,,,directional,0,not related to corr,NA,,0,,,,,,
+95,0,SPPS,2019,10/2,244,Jayamaha,"self-esteem, efficacy, social support",exp1,61,,N is couples,explorative,0,,NA,,1,r,0.2,"Power calc in SM -.> ""Power analyses using the Actor-Partner Interdependence Model (APIM) power module (Ackerman, Ledermann, & Kenny, 2016) indicates this sample and design (122 support interactions) provides adequate power (.90) to detect small (r = .20) actor and partner main effects when variables are moderately correlated across partners (r = .30). This fairly represents the context of the effect of self-esteem (r = .25).""",,,
+96,1,SPPS,2019,10/2,244,Jayamaha,"self-esteem, efficacy, social support",exp2,85,,N is couples,directional,0,,Pearson,,0,,,only post hoc,,,
+97,1,SPPS,2019,10/2,135,Tappin,"moral superiority, self-perception",,736,369;367,"N complicated to find, mentions two samples but not clear which analyses based on which sample",explorative,0,,"Spearman, also report graphically Bayesian correlations",,1,r,0.15,"""Sample sizes were determined via
+power analyses: Our smallest effect size of interest was r ¼
+.15, which we required N ¼ 343 to achieve 80% power (a ¼
+.05) to detect in each of our three primary linear regression
+analyses (Faul, Erdfelder, Buchner, & Lang, 2009). We deliberately
+oversampled by approximately 20% to guard against
+power loss due to planned data exclusions.""",1,,
+98,1,SPPS,2019,10/2,257,Bonam,"sociocultural, racial identity, intergroup dynamic",exp1,153,,,directional,0,,NA,corr given as r =,0,,,,,1,conceptual replication
+99,1,SPPS,2019,10/2,257,Bonam,"sociocultural, racial identity, intergroup dynamic",exp2,369,186;183,,directional,0,N for corr not clear,NA,corr given as r =,0,,,"seems like they did calculate some power but not clear how, for what effect and which test... ""Target sample size (N ¼ 364) was set for 80%
+power given a pilot study’s effect size (see Supplemental Material).
+Based""
+
+power for pilot study = ""sample size 264 was set achieve at least 80% power given a small effect, which was assumed in the absence of prior relevant work. """,,,
+100,1,EJP,2019,33/1,72,Bainbridge,"openess, pseudo-profound bullshit",exp1,140,,,exploratory,0,,Spearman,,1,r,0.24,"""Our target
+sample size was N = 133, which provides 80% power to detect
+a typical correlation in personality psychology (r = 0.24;
+Fraley & Marks, 2007).""",,,
+101,1,EJP,2019,33/1,72,Bainbridge,"openess, pseudo-profound bullshit",exp2,157,,,directional,0,,NA,,0,,,,1,,
+102,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp1,109,,,model testing,0,,correlation-like effect size,,0,,,,,,
+103,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp2,180,111;69,,model testing,0,,correlation-like effect size,,0,,,,,,
+104,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp3,156,,,model testing,0,,correlation-like effect size,,0,,,,,,
+105,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp4,107,,,model testing,0,,correlation-like effect size,,0,,,,,,
+106,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp5,253,167;86,,model testing,0,,correlation-like effect size,,0,,,,,1,conceptual replication in different country
+107,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp6,129,,,model testing,0,,correlation-like effect size,,0,,,,,,
+108,1,EJP,2019,33/1,34,Coelho,"human values, multidimensional scaling",exp7,152,,,model testing,0,,correlation-like effect size,,0,,,,,,
+109,1,EJP,2019,33/1,104,Hennecke,"self-regulation, self-control",exp1,465,245;220,,explorative,0,,NA,some corr given as r=,0,,,,,,
+110,1,EJP,2019,33/1,104,Hennecke,"self-regulation, self-control",exp2,264,,,directional,0,,NA,some corr given as r=,0,,,,,,
+111,1,EJP,2019,33/1,89,McAuliffe,"dictator game, trust, cooperation",,276,,,directional,0,not clear how hypothesis relates to corr,NA,"N for corr not clear, some corr given as r =",0,,,"""Our sample size allowed us to detect medium-sized effects
+(r = 0.17) with 80% power. In addition, sample sizes
+larger than 250 yield correlations that (i) have stabilized
+within a tolerable degree of uncertainty (Schönbrodt &
+Perugini, 2013) and (ii) provide a reasonable basis for specifying
+the structural equation models of present interest
+(Wolf, Harrington, Clark, & Miller, 2013).""",1,,
+112,0,EJP,2019,33/1,52,Stavrova,"cynicism, health",exp1,40445,,,explorative,0,,NA,some corr given as r =,0,,,,,,
+113,0,EJP,2019,33/1,52,Stavrova,"cynicism, health",exp2,15533,,N not clear,directional,0,,"Pearson, Spearman",,0,,,,,,
+114,0,ChildDev,2019,90/5,1702,Dalimonte-Merckling,"temperament, parenting",,3001,,,directional,0,,NA,,0,,,post hoc power calc included,,,
+115,1,ChildDev,2019,90/5,618,Devine,"individual differences, executive functions",,195,,,explorative,0,,NA,,1,f,0.15,"""The sample size was
+determined a priori as part of the larger project to
+investigate paternal and maternal influences on
+children’s self-regulation in the first 2 years of life.
+Allowing for 10% attrition, a sample of 210 participants
+would provide 80% power to detect medium
+effects (f2 = .15) at the .01 level of significance in
+regression analyses with up to 10 predictors (Faul,
+Erdfelder, Lang, & Buchner, 2007).""",,,
+116,1,ChildDev,2019,90/5,1632,Elenbaas,"income, perception",,267,,,directional,0,,NA,corr given as r =,1,,,"Details of power calc not given -> ""Sample size
+was determined using a priori power analyses for
+the most complex models reported in this article,
+which indicated that, expecting small to medium
+effects, a minimum of approximately 233 participants
+would be necessary to test our hypotheses.""",,,
+117,0,ChildDev,2019,90/5,1490,Erentaite,"identity processing, prodiversity",,916,,,directional,0,,NA,,0,,,,,,
+118,0,ChildDev,2019,90/5,565,Gooch,"speed of processing, language disorder",,528,,,directional,0,,NA,corr given as r =,0,,,,,,
+119,1,ChildDev,2019,90/5,1718,Hoyniak,"socioeconomic context, sleep",,493,,,directional,0,,NA,,0,,,,,,
+120,1,ChildDev,2019,90/5,1598,Jambon,"empathic concern, siblings",,452,,"not entirely whether dataset was external: ""Participants were drawn from the Kids, Families,
+and Places project, an ongoing within-family longitudinal
+study investigating the joint social and biological
+influences on early socioemotional and
+cognitive development (see Meunier, Boyle, O’Connor,
+& Jenkins, 2013).""",directional,0,,NA,,0,,,,,,
+121,1,ChildDev,2019,90/5,1579,Kaniusonyte,"loneliness, identity",,632,,,explorative,0,"no strong direction set, not mentioned that explorative",NA,,0,,,,,,
+122,0,ChildDev,2019,90/5,1544,McCoy,"self-regulation, academic skills, low-income",,466,,,explorative,0,,NA,"correlation table in appendix, coded as not present in paper",0,,,,,,
+123,1,ChildDev,2019,90/5,1614,Mills,"self-regulation, academic achievement",,403,,,explorative,0,couldnt find a clear hypothesis,NA,some corr given as r=,0,,,,,,
+124,0,ChildDev,2019,90/5,1802,Morgan,"executive functions, academic achievement",,8920,,,explorative,0,,NA,,0,,,,,,
+125,1,ChildDev,2019,90/5,1525,Pavani,"social cues, deafness",,66,16;19;17;14,,directional,0,,NA,corr given as r =,0,,,,,,
+126,1,ChildDev,2019,90/5,1684,Raby ,"abuse, neglect, academic competence",,267,,,model testing,0,,NA,,0,,,,,,
+127,1,ChildDev,2019,90/5,1559,Rachwami,"coordination, eye-tracking",,46,38;8,,directional,0,,NA,corr given as r =,0,,,,,,
+128,0,ChildDev,2019,90/5,1738,Schacter,"bullying, depression",,5991,,"the full sample actually not used for any corr result, the percentage is not absolutely exact (gives quarters of participants",explorative,0,,NA,corr given as r =,0,,,,,,
+129,1,ChildDev,2010,81/2,464,Campione-Barr,"siblings, conflict, relationships",,115,24;62;29,couldnt determine measures for variables,directional,0,,NA,,0,,,,,,
+130,1,ChildDev,2010,81/2,472,Ferry,"categorization, words, neonates",,46,24;22,,explorative,0,not specified that explora,NA,corr given as r =,0,,,,,,
+131,1,ChildDev,2010,81/2,528,Sauer,"brain lesions, gestures",,11,,,directional,0,,Spearman,,0,,,,,,
+132,1,ChildDev,2010,81/2,540,Kartner,"mother-infant interaction, culture",,44,20;24,,directional,0,,Pearson,,0,,,,,,
+133,1,ChildDev,2010,81/2,597,Low,"false-beliefs, implicit and explicit knowledge",exp1,24,,,directional,0,,NA,,0,,,,,,
+134,1,ChildDev,2010,81/2,597,Low,"false-beliefs, implicit and explicit knowledge",exp2,36,,,directional,0,,NA,,0,,,,,,
+135,1,ChildDev,2010,81/2,597,Low,"false-beliefs, implicit and explicit knowledge",exp3,42,,,directional,0,,NA,,0,,,,,1,
+136,0,ChildDev,2010,81/2,636,Wray-Lake,"decision-making, autonomy, adolescence",,402,,,explorative,0,,NA,corr in methods section,0,,,,,,
+137,1,DevPsy,2010,46/2,545,Berteletti,"numerical development, number representation",exp1,46,11;16;19,,directional,0,,Spearman,,0,,,,,,
+138,1,DevPsy,2010,46/2,545,Berteletti,"numerical development, number representation",exp2,373,74;128;168,,directional,0,,NA,corr given as r= and rs= -> coded as pearson and spearman in corr data,0,,,,,,
+139,1,DevPsy,2010,46/2,530,Pellicano,"autism, ToM, executive functions, central coherence",,37,26;9;2,,explorative,0,two competing hypotheses,"Sperman, Pearson, NA","some corr specified as Spearman, some unspecified, some Pearson",0,,,,,,
+140,1,DevPsy,2010,46/2,502,Benjamin,"event memory, caregiver training",,121,24;24;24;24;25,,directional,0,,NA,some corr given as r =,0,,,,,,
+141,1,DevPsy,2010,46/2,479,Rice,"narrative identity, adult development",,177,115;62,,directional,0,,NA,,0,,,,,,
+142,0,DevPsy,2010,46/2,468,Lee,"adoption, institutional care",,612,230;382,,directional,0,,NA,some corr given as r=,0,,,,,,
+143,1,DevPsy,2010,46/2,455,Feldman,"parenting, social competence",,162,100;62,,directional,0,,NA,some corr given as r=,0,,,,,,
+144,1,DevPsy,2010,46/2,417,Leclercq,"short-term memory, verbal, vocabulary development",,60,,,directional,0,,NA,some corr given as r=,0,,,,,,
+145,1,DevPsy,2010,46/2,391,McKenzie,"autism, reasoning",,52,32;20,,explorative,0,,NA,some corr given as r=,0,,,,,,
+146,0,DevPsy,2010,46/2,379,Pluess,"temperament, differential susceptibility",,1364,,,explorative,0,,NA,some corr given as r=,0,,,,,,
+147,1,DevPsy,2010,46/2,337,Waszak,"attentional networks, life span",,263,,,directional,0,,Pearson,N for corr not clear,0,,,,,,
+148,1,DevPsy,2010,46/2,326,Berger,"perseveration, infancy",exp1,22,,,directional,0,,"NA, point-biserial",additional two pb corr reported with impossible values (> 1),0,,,,,,
+149,1,DevPsy,2010,46/2,326,Berger,"perseveration, infancy",exp2,35,23;12,,directional,0,,NA,"some corr as r =, additional pb corr with value > 1",0,,,,,,
+150,1,DevPsy,2010,46/2,310,Feldman,"aggression, toddler, conflict resolution",,141,86;55,,directional,0,,Pearson,,0,,,,,,
+151,1,EJP,2010,24/2,85,Wacker,"EEG, Go/No-Go",,69,,,explorative,0,,NA,some corr given as r =,0,,,,,,
+152,1,EJP,2010,24/2,123,Borkenau,"cognitive processes, personality types",,129,,,directional,0,,NA,some corr given as r =,0,,,,,,
+153,1,EJP,2010,24/2,137,Schweizer,"bipolar items, item wording",,808,,,explorative,0,,NA,,0,,,,,,
+154,1,EJP,2010,24/4,291,Kampfe,"personality, mood regulation, well-being",,1494,467;348;679,not clear where the samples came from,model testing,0,,Pearson,,0,,,,,,
+155,1,EJP,2010,24/4,324,Asbrock,"authoritarianism, social dominance orientation, dual process model",,127,,,directional,0,,NA,,0,,,,,,
+156,1,EJP,2010,24/4,341,Ziegler,"abilities, aptitudes, educational psychology",,145,,,directional,0,,NA,,0,,,,,,
+157,0,JCPP,2010,51/6,725,de Haan,"aggression, deliquency, personality",,586,146;146;147;147,"Cannot find info about N in each cohort, the N per cohort si guesssed at by dividing total N/4, cohort sequential design with T1:586, T2:501, T3:466. When fraction, it is rounded",directional,0,,Pearson,as bivariate,0,,,,,,
+158,1,JCPP,2010,51/6,652,Abubakar,"latent growth curves, stunting",,85,,,explorative,0,,NA,,0,,,,,,
+159,0,JCPP,2010,51/6,679,Edwards,"externalizing behavior,",,250,,,explorative,0,,NA,r given as r =,0,,,,,,
+160,1,JCPP,2010,51/6,696,Tadic,"visual impairment, social communication",,41,15;26,,explorative,0,,NA,r given as r =,0,,,,,,
+161,1,JCPP,2010,51/6,706,Kim,"emotion regulation, maltreatment",,421,215;206,,directional,0,,NA,r given as r =,0,,,,,,
+162,0,JCPP,2010,51/6,660,Petrill,"growth, twins, reading",,314,"179,135",,explorative,0,,NA,r given as r =,0,,,,,,
+163,1,JCPP,2010,51/6,734,Silberg,"parental depression, family environment",,1043,,,directional,0,,NA,,0,,,,,,
+164,1,JPSP,2010,99/5,725,Kay,"compensatory control, systém justification, God",exp1,74,,,directional,0,,NA,,0,,,,,,
+165,1,JPSP,2010,99/5,740,Forbes,"math, attitude change",exp1,58,,,directional,0,,NA,r given as r =,0,,,,,,
+166,1,JPSP,2010,99/5,740,Forbes,"math, attitude change",exp2,143,,,directional,0,,NA,r given as r =,0,,,,,,
+167,1,JPSP,2010,99/5,740,Forbes,"math, attitude change",exp3,120,,,directional,0,,NA,r given as r =,0,,,,,,
+168,1,JPSP,2010,99/5,771,Piff,"socioeconomic status, prosocial behaviour",exp2,81,,,directional,0,,NA,r given as r =,0,,,,,,
+169,1,JPSP,2010,99/5,771,Piff,"socioeconomic status, prosocial behaviour",exp3,155,,,mediation,0,,NA,,0,,,,,,
+170,1,JPSP,2010,99/5,785,Gibbons,"discrimination, affect, substance use",exp1,676,,,directional,0,,NA,r given as r =,0,,,,,,
+171,1,JPSP,2010,99/5,785,Gibbons,"discrimination, affect, substance use",exp2,116,,,directional,0,,NA,r given as r =,0,,,,,,
+172,1,JPSP,2010,99/5,870,Allik,"personality, cross-cultural",exp1,1678,304;218;811;345,,directional,0,,NA,,0,,,,,,
+173,0,JPSP,2010,99/5,870,Allik,"personality, cross-cultural",exp2,29,,countries for which data are available. Number of participants not clear,explorative,0,,"NA, spearman",spearman specified as rank,0,,,,,,
+174,1,SPPS,2010,1/4,311,Duckworth,"self-control, academic achievement",,189,,,explorative,0,,NA,r given as r =,0,,,,,,
+175,1,SPPS,2010,1/4,302,Wiltermuth,"moral judgment, praise",exp1,114,,,explorative,0,,NA,r given as r =,0,,,,,,
+176,1,SPPS,2010,1/4,302,Wiltermuth,"moral judgment, praise",exp2,119,,,directional,0,,NA,,0,,,,,,
+177,1,SPPS,2010,1/4,302,Wiltermuth,"moral judgment, praise",exp3,112,,,explorative,0,,NA,r given as r =,0,,,,,,
+178,1,SPPS,2010,1/4,327,Nave,"personality, observed behavior",,144,,,explorative,0,,NA,r given as r =,0,,,,,,
+179,1,SPPS,2010,1/4,369,Wenzel,"forgiveness, interpersonal conflict",,112,,,explorative,0,,NA,,0,,,,,,
+180,1,SPPS,2010,1/4,361,Mazzocco,"persuasion, social justice",exp1,137,,,directional,0,,NA,r given as r =,0,,,,,,
+181,1,SPPS,2010,1/4,361,Mazzocco,"persuasion, social justice",exp2,298,,,directional,0,,NA,r given as r =,0,,,,,,
+182,0,ChildDev,2010,81/4,1040,Becker-Blease,"victimization, mental health, disasters",,2030,,,directional,0,,NA,,0,,,,,,
+183,1,ChildDev,2010,81/4,1053,Layne,"postwar menatl distress, adolescence",,881,,,directional,0,,NA,,0,,,"""Reduced power
+(due to halving the sample), as well as restricted predictor
+variance, likely played roles in reducing the
+number of significant paths in both Subsample 2
+models:""",,,
+184,1,ChildDev,2010,81/4,1077,Stichick Betancourt,"child soldiers, traumatic events",,156,,,directional,0,,NA,,0,,,,,,
+185,1,ChildDev,2010,81/4,1096,Klasen,"child soldiers, postraumatic resilience",,330,,,directional,0,,"Spearman, point-biserial",,0,,,,,,
+186,1,ChildDev,2010,81/4,1114,Kithakye,"conflict, emotion regulation, disaster experience",,84,,,directional,0,,NA,,0,,,,,,
+187,1,ChildDev,2010,81/4,1176,Catani,"natural disasters, psychosocial risk",,1398,364;474;263;296,,explorative,0,,NA,,0,,,,,,
+188,1,ChildDev,2010,81/4,1192,Fernando,"daily stressors, disaster, psychosocial functioning",,427,,,directional,0,,NA,corr given as r =,0,,,,,,
+189,1,ChildDev,2010,81/4,1211,Kilmer,"trauma, postraumatic growth",,66,,,directional,0,,NA,,0,,,"""The
+study’s relatively small sample affected power, prohibited
+the use of other statistical techniques, and
+limited foci to the variables selected.""",,,
+190,1,ChildDev,2010,81/4,1228,Vigil,"sex differences, cortisol",,115,62;53,,directional,0,,NA,,0,,,,,,
+191,1,ChildDev,2010,81/4,1304,Vlamings,"face-processing, ERP",,70,20;25;25,,explorative,0,,NA,corr given as r =,0,,,,,,
+192,1,DevPsy,2010,46/4,761,Bauer,"growth goals, ego development, traits",,145,,"T1 145, T2 87,",directional,0,,Pearson,,0,,,,,,
+193,1,DevPsy,2010,46/4,773,Véronneau,"peer relations, social acceptance",,452,,,directional,0,,Pearson,,0,,,"""our
+sample size, although relatively large, still provided limited power
+to uncover possible gender differences relevant to outcomes""",,,
+194,1,DevPsy,2010,46/4,791,Braungart-Rieker,"temperament, ,aternal sensitivity",,143,,,directional,0,,NA,corr given as r =,0,,,,,,
+195,1,DevPsy,2010,46/4,805,Malvar Pargas,"maternal depression, resilience",,648,,,directional,0,,NA,,0,,,,,,
+196,1,DevPsy,2010,46/4,827,Cummings,"political violence, social-ecological hypothesis",,700,,,directional,0,,NA,corr given as r =,0,,,,,,
+197,1,DevPsy,2010,46/4,842,Cox,"gender role, emotion expression",,316,163;153,,directional,0,,NA,,0,,,,,,
+198,1,DevPsy,2010,46/4,869,Schermerhorn,"intraparental conflict, bidirectionality",,111,,,directional,0,,NA,corr given as r =,0,,,,,,
+199,1,DevPsy,2010,46/4,905,Kartner,"prosocial behaviour, empathy",,77,39;38,,directional,0,,point-biserial,not specified for all correl,0,,,,,,
+200,0,DevPsy,2010,46/4,915,Jokela,"cognitive ability, fertility, temperament",,7695,,,directional,0,,Pearson,,0,,,,,,
+201,1,DevPsy,2010,46/4,939,Hertzog,"learning, metacognition",,285,,,directional,0,,gamma,,0,,,,,,
+202,1,DevPsy,2010,46/4,949,Geiger,"sleep, intelligence",,60,,,explorative,0,,NA,corr given as r=,0,,,,,,
+203,1,JCPP,2010,51/8,953,Mrug,"violence exposure, internalizing, externalizing",,603,,,directional,0,,NA,,0,,,,,,
+204,0,JCPP,2010,51/8,871,Sterba,"dvelopment, factor analysis",,4500,,,explorative,0,,factor correlations,,0,,,,,,
+205,1,JCPP,2010,51/8,935,Gabbay,"adolescent depression, kynurenine",,72,,,directional,0,,NA,corr given as r=,0,,,power calculated post-hoc for individual analyses,,,
+206,1,JCPP,2010,51/8,895,Lambek,"ADHD, executive function deficit",,48,22;26,,directional,0,,NA,corr given as r=,0,,,,,,
+207,1,SPPS,2010,1/2,111,Waroquier,"unconscious thought, conscious thought, first impression",,39,,,explorative,0,,NA,corr given as r=,0,,,,,1,"""we
+also aimed at offering a conceptual replication of the study conducted
+by Dijksterhuis et al. (2006, Experiment 3)"""
+208,1,SPPS,2010,1/2,190,Čehajic,"acknowledgment, intergroup contact",,284,,,directional,0,,NA,,0,,,,,,
+209,1,SPPS,2010,1/2,182,Vaughn Becker,"encoding, memory",,89,,,explorative,0,,NA,corr given as r=,0,,,,,,
+210,1,SPPS,2010,1/2,143,Friese,"attention, self-regulation",,49,,,directional,0,,NA,,0,,,,,,
+211,1,SPPS,2010,1/2,160,Yoon,"transactive memory, culture",,114,58;56,,directional,0,,NA,corr given as r=,0,,,,,,
+212,1,JPSP,2010,98/3,343,Rule,"social categorization, person perception",exp1,72,,,explorative,0,,NA,corr given as r=,0,,,,,,
+213,1,JPSP,2010,98/3,343,Rule,"social categorization, person perception",exp2,58,,,directional,0,,NA,corr given as r=,0,,,,,,
+214,1,JPSP,2010,98/3,343,Rule,"social categorization, person perception",exp3,102,46;56,,directional,0,,NA,corr given as r=,0,,,,,,
+215,1,JPSP,2010,98/3,356,Degner,"automatic attitudes, implicit prejudice",exp1,304,,,explorative,0,,NA,corr given as r=,0,,,,,,
+216,1,JPSP,2010,98/3,356,Degner,"automatic attitudes, implicit prejudice",exp2,264,,,explorative,0,,NA,corr given as r=,0,,,,,,
+217,1,JPSP,2010,98/3,356,Degner,"automatic attitudes, implicit prejudice",exp3,141,,,directional,0,,NA,corr given as r=,0,,,,,,
+218,1,JPSP,2010,98/3,356,Degner,"automatic attitudes, implicit prejudice",exp4,129,,,directional,0,,NA,corr given as r=,0,,,,,,
+219,1,JPSP,2010,98/3,405,Ford,"interpersonal rejection, self-esteem",,78,,,directional,0,,NA,corr given as r=,0,,,,,,
+220,1,JPSP,2010,98/3,469,Thrash,"inspiration, creativity, productivity",exp1,157,,,directional,0,,NA,corr given as r=,0,,,,,,
+221,1,JPSP,2010,98/3,469,Thrash,"inspiration, creativity, productivity",exp2,148,,,directional,0,,NA,corr given as r=,0,,,,,,
+222,1,JPSP,2010,98/3,469,Thrash,"inspiration, creativity, productivity",exp3,188,,,explorative,0,,NA,corr given as r=,0,,,,,,
+223,1,JPSP,2010,98/3,469,Thrash,"inspiration, creativity, productivity",exp4,162,,,explorative,0,,NA,corr given as r=,0,,,,,,
+224,1,JPSP,2010,98/3,488,Thrash,"inspiration, positive affect",exp1,79,,,directional,0,,NA,corr given as r=,0,,,,,,
+225,1,JPSP,2010,98/3,488,Thrash,"inspiration, positive affect",exp2,220,,,directional,0,,NA,corr given as r=,0,,,,,,
+226,1,JPSP,2010,98/3,488,Thrash,"inspiration, positive affect",exp3,139,,,explorative,0,,NA,,0,,,,,1,
+227,1,JPSP,2010,98/3,520,Srivastava,"social perception, prceiver effect",exp1,423,,,exploratory,0,,NA,,0,,,,,,
+228,1,JPSP,2010,98/3,520,Srivastava,"social perception, prceiver effect",exp2,152,,,exploratory,0,,NA,,0,,,,,,
+229,1,EJP,2010,24/6,515,Sibley,"attitudes, social groups",,454,,,directional,0,,NA,corr given as r=,0,,,,,,
+230,1,EJP,2010,24/6,535,Steinmayr,"parents' education, academic achievement",,580,,,directional,0,,product moment ,not clear which corr significant ,0,,,,,,
+231,1,EJP,2010,24/6,551,Vermeuelen,"alexithymia, anger, memory",,107,,,directional,0,,NA,,0,,,,,,
+232,1,JCPP,2010,51/10,1125,Wai Wan,"conduct disorder, maternal depression",,77,,,exploratory,0,,"spearman, NA",,0,,,,,,
+233,1,JCPP,2010,51/10,1141,Hunter,"appraisal, depression",,924,,number of participants in abstract and methods differ,directional,0,,NA,,0,,,,,,
+234,1,JCPP,2010,51/10,1132,Briggs-Gowan,"posttraumatic stress, early childhood",,213,,,directional,0,,point-biserial,,0,,,"""Logistic regression analyses were not conducted
+due to the limited statistical power.""",,,
+235,1,JCPP,2010,51/10,1150,Murray,"academic performance, cognitive development, IQ",,89,50;39,,explorative,0,,NA,corr given as r=,0,,,,,,
+236,1,JCPP,2010,51/10,1160,Kersten-Alvarez,"postpartum depression, mother child interactions",,58,29;29,,directional,0,,NA,,0,,,"""Power analysis was performed with 29 cases per level
+(power > .80, p < .05), which showed an effect size of
+.38 or higher to be measurable given the number of
+participants in this follow-up study.""",,,
+237,1,JCPP,2010,51/10,1115,Sprung,"PTSD, intrusive thoughts",,165,,,explorative,0,,NA,corr given as r=,0,,,,,,
+238,1,SPPS,2010,1/3,274,Carter,"judgment, decision making",,29,,,directional,0,,NA,corr given as r=,0,,,,,,
+239,1,SPPS,2010,1/3,246,Rutjens,"compensatory control, belief in progress",,43,,,directional,0,,NA,corr given as r=,0,,,,,,
+240,0,SPPS,2010,1/3,222,Keith Campbell,"culture, cognition",,1270,351;919,,explorative,0,,Pearson,corr given as r=,0,,,,,,
+241,1,SPPS,2010,1/3,280,Sadler,"personality,anxiety",,37,,,directional,0,,NA,,0,,,,,,
+242,1,SPPS,2010,1/3,206,Samochowiec,"person perception, politics",exp1,403,,,directional,0,,NA,corr given as r=,0,,,,,,
+243,1,SPPS,2010,1/3,206,Samochowiec,"person perception, politics",exp2,40,,,explorative,0,,NA,corr given as r=,0,,,,,,
+244,1,SPPS,2010,1/3,206,Samochowiec,"person perception, politics",exp3,53,,,explorative,0,,NA,corr given as r=,0,,,"""We acknowledge, however, that perhaps with greater
+power significant differences may have emerged.""",,,
