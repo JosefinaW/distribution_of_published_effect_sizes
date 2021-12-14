@@ -46,8 +46,8 @@ OSCorToP <- function(r,n){
 
 ##SAMPLE1
 #the data are loaded from two csv files
-data.p2 <- read_csv("MPhilProject_Data260121p2.csv")
-data.p1 <- read_csv("MPhilProject_Data260121p1.csv")
+data.p2 <- read_csv("Data260121p2.csv")
+data.p1 <- read_csv("Data260121p1.csv")
 
 #changing column names
 colnames(data.p2)[4] <- ("SignificanceLevel")
