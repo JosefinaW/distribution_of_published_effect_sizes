@@ -11,6 +11,7 @@ install.packages("bayestestR")
 install.packages("hexbin")
 install.packages("ggExtra")
 install.packages("spearmanCI")
+install.packages("matlab")
 
 library(plotly)
 library(ggExtra)
@@ -26,11 +27,12 @@ library(RColorBrewer)
 library(hexbin)
 library(bayestestR)
 library(spearmanCI)
+library(matlab)
 
 
 
 ##FUNCTIONS
-#Function to find p-value for r and n
+#Function to find p-value for r and n to check against the reported p-value
 CorToP <- function(r,n){ 
   T_value <- r*sqrt((n-2)/(1-r^2))
   P_value <- 2*pt(T_value, n-2, lower=FALSE)
@@ -44,12 +46,13 @@ OSCorToP <- function(r,n){
 
 
 
-##SAMPLE1
+##SAMPLE1 data
+#data frame preparation
 #the data are loaded from two csv files
 data.p2 <- read_csv("Data260121p2.csv")
 data.p1 <- read_csv("Data260121p1.csv")
 
-#changing column names
+#changing column names for easier manipulation
 colnames(data.p2)[4] <- ("SignificanceLevel")
 colnames(data.p2)[3] <- ("Direction")
 colnames(data.p2)[13] <- ("InPaper")
@@ -93,7 +96,7 @@ non_spec <- df %>%
 #creating df containing only reportedly significant values
 signific_only <- excl_non_spec %>% filter (Nonsignificant==0)
 
-#misreporting reports
+#misreporting of significant values - this was not part of the manuscript but was used to check the reason for over the significance boundary values in Figure 3 A and B.
 P_larger_Sig <- df %>%
   filter(type_p != 3) %>% filter(Nonsignificant != 1) %>%
   filter(SignificanceLevel < OSExact_P) #or filter(SignificanceLevel < Exact_P)
@@ -110,11 +113,12 @@ nonsig_p2 <- excl_non_spec%>%
 #values reported with p=
 peq <- df%>%filter(type_p==1)
 
-#percentile and cumulative percentile plot for Sample 1
+#Manuscript figures
+#percentile and cumulative percentile plot for Sample 1 (= Figure 2 A )
 
 dfS1 <- df%>%select("Correlation","N")%>%filter(N>0)
-dfS1 <- mutate(dfS1, df = N-2) #creating df column from N 
-colnames(dfS1)<-c("rabs","N","df")
+dfS1 <- mutate(dfS1, df = N-2) #creating degrees of freedom column from N 
+colnames(dfS1)<-c("rabs","N","df") #change column names
 chdf3 <- dfS1 %>% arrange(df) #creating dataframe arranged by df
 #loop to calculate cumulative percentiles so that for each df, the percentiles were calculated for all r-values with that df and smaller df.
 qTable3 <- data.frame()
@@ -125,15 +129,16 @@ for (x in unique(chdf3$df)) {
   qRow["df"] <- max(chdfRow["df"])
   qTable3 <- rbind(qTable3,qRow)
 }
-colnames(qTable3) <- c("q0","q1","q2","q3","q4","N")
-chdf3 <- chdf3 %>% mutate(id = row_number())
+colnames(qTable3) <- c("q0","q1","q2","q3","q4","df") #change column names for quantiles and df
+#calculating median values for Figure 2 A
+chdf3 <- chdf3 %>% mutate(id = row_number()) 
 chdf3$category <- cut(chdf3$id, seq(0,12406,1000), labels=c(1:12))
 chdf_median <- chdf3%>%
   group_by(category)%>% 
   summarise(median=median(rabs), dfmedian=median(df))
 chdf_median <- chdf_median%>%select(dfmedian, median)
 
-#plots for the cumulative percentiles
+#plot for the cumulative percentiles (Figure 2 A) for Sample 1
 perplot1 <- ggplot(qTable3, aes(x=q2, y=N, color="q2")) + geom_point() + scale_y_log10() + geom_point(data=qTable3, aes(x=q1,y=N, color="q1")) + geom_point(data=qTable3, aes(x=q3,y=N, color="q3")) + theme_bw() + 
   labs(title="A. Cumulative 25th, 50th and 75th percentiles of correlations \n by df (Sample 1)", 
        x="Correlation",y="degrees of freedom (log10)") +
@@ -142,11 +147,22 @@ perplot1 <- ggplot(qTable3, aes(x=q2, y=N, color="q2")) + geom_point() + scale_y
   scale_color_discrete(name = "", labels=c("25th percentile","50th percentile", "75th percentile")) + geom_point(data=chdf_median, aes(x=median, y=dfmedian), color="black", shape=17, size=3)
 
 
-grid.arrange(perplot1, perplot3, ncol=2) #arranging together percentile plots for both Samples
-
+#Figure 4 A, B and C
+#plotting density of sig and nonsig records at different sample sizes for Sample 1
+#Figure 4A
+d1<-ggplot(excl_non_spec, aes(x=N,y = (..count..)/sum(..count..), fill=factor(Nonsignificant))) + geom_density(alpha=0.5) + scale_x_log10() + labs(title= "A. Probability density distribution of Sample size for significant and nonsignificant correlation values", y="Probability", x = "Sample size (log10)") + scale_fill_discrete(name = "", labels=c("Significant","Nonsignificant")) +
+  theme_bw() + theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), legend.text = element_text(size = 14), axis.title=element_text(size=14)) 
+#Figure 4B
+d2<-ggplot(excl_non_spec, aes(x=Correlation,y = (..count..)/sum(..count..), color=factor(Nonsignificant))) + geom_density( size=1 ) + labs(title= "B. Probability density distribution of significant and nonsignificant correlation values", y="Probability", x = "Correlation values (r)") + scale_color_discrete(name = "", labels=c("Significant","Nonsignificant")) +
+  theme_bw() + theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), legend.text = element_text(size = 14), axis.title=element_text(size=14)) 
+#Figure 4C
+d3 <-ggplot(excl_non_spec, aes(x=Correlation, color=factor(Nonsignificant))) + stat_ecdf(size=1, geom="line") + labs(title= "C. Cumulative probability distribution of significant and nonsignificant correlation values", y="Cumulative probability", x = "Correlation values (r)") + scale_color_discrete(name = "", labels=c("Significant","Nonsignificant")) +
+  theme_bw() + theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), legend.text = element_text(size = 14), axis.title=element_text(size=14)) 
+#arranging together
+grid.arrange(d1,d2,d3)
 
 ##SAMPLE2 
-#data are uploaded 
+#data are uploaded from this csv 
 sample2 <- read_csv("CorrResults140820.csv")
 sample2<- sample2%>%filter(abs(r)<=1) #ensuring that only realistic values remain in the sample
 #creating column with different years
@@ -174,7 +190,7 @@ sample2$subfield <- ifelse(startsWith(sample2$Dir,"\\ChildDev"),"dev",
                                          ifelse(startsWith(sample2$Dir,"\\JCPP"),"dev",
                                                 ifelse(startsWith(sample2$Dir,"\\JExpChildPs"),"dev", "soc")))))
 
-#calculating the spearman correlation coefficient between df and r 
+#calculating the spearman correlation coefficient between df
 sample2df <- sample2 %>% filter(df>0)
 s210 <- sample2df %>% filter(Year==2010)
 s211 <- sample2df %>% filter(Year==2011)
@@ -203,58 +219,7 @@ spearmanCI(abs(s210$r), s210$df, level=0.95)
 sample2df$Exact_P <- mapply(CorToP, r=abs(sample2df$r), n=(sample2df$df+2)) 
 sample2df$OSExact_P <- mapply(OSCorToP, r=abs(sample2df$r), n=(sample2df$df+2))
 
-#Misreporting of results - creating dataframe for records containing both df and p-values
-p_df <- sample2 %>% filter(df>0)%>%filter(pe>0 | ps>0 | pl>0)
-data.frame(tapply(p_df$r, p_df$Dir, length)) #eligible records per journal
-
-#ensuring that only possible values remain in the table
-pequal <- sample2 %>% filter(pe>0 & pe<1) 
-pless <- sample2 %>% filter(ps>0 & ps<1)
-plarge <- sample2 %>% filter(pl>0 & pl<1)
-#creating data frame of records containing df
-p_val_check_equal <- pequal %>% filter(df>0) 
-p_val_check_equal$Exact_P <- mapply(CorToP, r=abs(p_val_check_equal$r), n=(p_val_check_equal$df+2)) #applting functions to calculate exact p-values - two-sided
-p_val_check_equal$OSExact_P <- mapply(OSCorToP, r=abs(p_val_check_equal$r), n=(p_val_check_equal$df+2)) #one-sided
-
-#calculating difference between the reported and calculated p-value for two-sided and one-sided option
-p_val_check_equal$diff <- p_val_check_equal$pe-p_val_check_equal$Exact_P
-p_val_check_equal$diff2 <- p_val_check_equal$pe-p_val_check_equal$OSExact_P
-#calculating number of values with absolute difference between the two larger tha 0.01
-k <- p_val_check_equal %>% filter(abs(diff)>0.01) 
-k0 <- p_val_check_equal %>% filter(abs(diff2)>0.015)
-#values with gross mistakes that change the nominal significance of records
-p_val_check_equal %>% filter(pe>0.05 & OSExact_P<=0.05) %>% nrow
-
-#checking values reported as p<
-p_val_check_less <- pless %>% filter(df>0) #records with df
-#applying the function to calculate exact p-values
-p_val_check_less$Exact_P <- mapply(CorToP, r=abs(p_val_check_less$r), n=(p_val_check_less$df+2))
-p_val_check_less$OSExact_P <- mapply(OSCorToP, r=abs(p_val_check_less$r), n=(p_val_check_less$df+2))
-
-k2<-p_val_check_less %>% filter(abs(Exact_P) > ps) #checking for values larger than reported p
-p_val_check_less$diff <- p_val_check_less$ps-p_val_check_less$Exact_P #difference between the reported and exact p-value
-p_val_check_less$diff2 <- p_val_check_less$ps-p_val_check_less$OSExact_P #one-sided
-#gross errors that result in the change of nominal significance status
-p_val_check_less %>% filter(ps<=0.05)%>%filter(Exact_P>0.05)%>%nrow
-
-#checking values with reported p>
-p_val_check_large <- plarge %>% filter(df>0) 
-#calculating exact p-values
-p_val_check_large$Exact_P <- mapply(CorToP, r=abs(p_val_check_large$r), n=(p_val_check_large$df+2))
-p_val_check_large$OSExact_P <- mapply(OSCorToP, r=abs(p_val_check_large$r), n=(p_val_check_large$df+2))
-
-p_val_check_large$diff <- p_val_check_large$pl-p_val_check_large$Exact_P #difference between the exact and reported significance status
-p_val_check_large$diff2 <- p_val_check_large$pl-p_val_check_large$OSExact_P #one-sided
-#gross errors that result in change in the nominal significance status
-p_val_check_large %>%filter(pl>=0.05)%>%filter(Exact_P<0.05)%>%nrow
-k3<-p_val_check_large %>% filter(abs(OSExact_P) < pl) #values with smaller exact p-value than reported
-
-d<-rbind(k, k2,k3) #dataframe containing only the incongruent records
-d %>% unique(d$File)#how many studies contained the misreported records
-d2<-data.frame(table(k$Year)) #how many misreported records in different year
-data.frame(table(k3$Dir)) #from which journals
-
-#calculating bootstrapped 95% confidence intervals for the median correlation values in different years
+#calculating bootstrapped 95% confidence intervals for the median correlation values in different years for Figure 6 A
 install.packages("boot")
 library(boot)
 s210 <- sample2%>%filter(Year==2010)
@@ -309,11 +274,40 @@ CI18 <- CI18$normal
 CI19 <- CI19$normal
 CIwhole<-rbind(CI10,CI11,CI12,CI13,CI14,CI15,CI16,CI17,CI18,CI19) #creating one data frame with all confidence intervals
 
-med <- tapply(abs(sample2$r), sample2$Year, median) #calculating medians for each teae
-
+med <- tapply(abs(sample2$r), sample2$Year, median) #calculating medians for each these
 med <- data.frame(med)
 CIwhole <- data.frame(CIwhole, med, Year) #joining into one data frame
 
+
+#data frame of sample 2 records without studies in sample 1
+sample_elim <- read_csv("sample2_elim_17092021.csv")
+sample_elim<- sample_elim%>%filter(abs(r)<=1) #ensuring that only realistic values remain in the sample
+#adding a column with year
+sample_elim$Year <- ifelse(endsWith(sample_elim$Dir, "10"),2010, 
+                           ifelse(endsWith(sample_elim$Dir, "11"), 2011,
+                                  ifelse(endsWith(sample_elim$Dir, "12"),2012,
+                                         ifelse(endsWith(sample_elim$Dir, "13"),2013,
+                                                ifelse(endsWith(sample_elim$Dir, "14"),2014,
+                                                       ifelse(endsWith(sample_elim$Dir, "15"),2015,
+                                                              ifelse(endsWith(sample_elim$Dir, "16"),2016,
+                                                                     ifelse(endsWith(sample_elim$Dir, "17"),2017,
+                                                                            ifelse(endsWith(sample_elim$Dir, "18"),2018,
+                                                                                   ifelse(endsWith(sample_elim$Dir, "19"),2019, 0)))))))))) #want to specify those that are nonsig and at the same time have p < 0.05
+
+
+
+#creating a column specifying subfield for sample 2
+targetdev2 <- c("\\ChildDev","\\DevPsy","\\JAppDevPsy","\\JCPP","\\JExpChildPs")
+targetsoc2<- c("\\EJP","\\JExpSocPsy","\\JPSP", "\\JResInPer", "\\SPPS")
+sample_elim$subfield <- ifelse(startsWith(sample_elim$Dir,"\\ChildDev"),"dev",
+                               ifelse(startsWith(sample_elim$Dir,"\\DevPsy"),"dev",
+                                      ifelse(startsWith(sample_elim$Dir,"\\JAppDevPsy"),"dev",
+                                             ifelse(startsWith(sample_elim$Dir,"\\JCPP"),"dev",
+                                                    ifelse(startsWith(sample_elim$Dir,"\\JExpChildPs"),"dev", "soc")))))
+
+
+
+#the Figure 2 B for Sample 2
 #Sample2 percentile and cumulative percentile plot
 dfS2 <- sample2df%>%select("r","df") #from sample 2 data frame with only records containing degrees of freedom selecting r column and df column
 dfS2 <- mutate(dfS2, rabs = abs(r)) #creating column of absolute r value 
@@ -346,35 +340,10 @@ perplot3 <- ggplot(qTable3, aes(x=q2, y=N, color="q2")) + geom_point() + scale_y
         legend.text = element_text(size = 14), axis.title=element_text(size=14), legend.position = "none") + 
   scale_color_discrete(name = "", labels=c("25th percentile","50th percentile", "75th percentile")) + geom_point(data=chdf_median, aes(x=median, y=dfmedian), color="black", shape=17, size=3)
 
-#data frame of sample 2 records without studies in sample 1
-sample_elim <- read_csv("sample2_elim_17092021.csv")
-sample_elim<- sample_elim%>%filter(abs(r)<=1) #ensuring that only realistic values remain in the sample
-#adding a column with year
-sample_elim$Year <- ifelse(endsWith(sample_elim$Dir, "10"),2010, 
-                           ifelse(endsWith(sample_elim$Dir, "11"), 2011,
-                                  ifelse(endsWith(sample_elim$Dir, "12"),2012,
-                                         ifelse(endsWith(sample_elim$Dir, "13"),2013,
-                                                ifelse(endsWith(sample_elim$Dir, "14"),2014,
-                                                       ifelse(endsWith(sample_elim$Dir, "15"),2015,
-                                                              ifelse(endsWith(sample_elim$Dir, "16"),2016,
-                                                                     ifelse(endsWith(sample_elim$Dir, "17"),2017,
-                                                                            ifelse(endsWith(sample_elim$Dir, "18"),2018,
-                                                                                   ifelse(endsWith(sample_elim$Dir, "19"),2019, 0)))))))))) #want to specify those that are nonsig and at the same time have p < 0.05
-
-
-
-#creating a column specifying subfield for sample 2
-targetdev2 <- c("\\ChildDev","\\DevPsy","\\JAppDevPsy","\\JCPP","\\JExpChildPs")
-targetsoc2<- c("\\EJP","\\JExpSocPsy","\\JPSP", "\\JResInPer", "\\SPPS")
-sample_elim$subfield <- ifelse(startsWith(sample_elim$Dir,"\\ChildDev"),"dev",
-                               ifelse(startsWith(sample_elim$Dir,"\\DevPsy"),"dev",
-                                      ifelse(startsWith(sample_elim$Dir,"\\JAppDevPsy"),"dev",
-                                             ifelse(startsWith(sample_elim$Dir,"\\JCPP"),"dev",
-                                                    ifelse(startsWith(sample_elim$Dir,"\\JExpChildPs"),"dev", "soc")))))
-
-
-
-
+#arranging both plots together
+grid.arrange(perplot1, perplot3, ncol=2) #arranging together Figure 2 A and B
+             
+             
 #OVERLAP BETWEEN SAMPLES
 #creating a df of the overlap in sample 2
 s2overlap <- anti_join(sample2, sample_elim, by=c("X1"))
