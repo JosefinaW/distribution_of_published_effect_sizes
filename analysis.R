@@ -190,6 +190,12 @@ sample2$subfield <- ifelse(startsWith(sample2$Dir,"\\ChildDev"),"dev",
                                          ifelse(startsWith(sample2$Dir,"\\JCPP"),"dev",
                                                 ifelse(startsWith(sample2$Dir,"\\JExpChildPs"),"dev", "soc")))))
 
+
+#histogram of r-values for each year (Figure 5)
+plot1<-ggplot(sample2, aes(x=abs(r), y=(..count..)/sum(..count..), fill="Year")) + geom_histogram(bins=100) + facet_wrap(~Year, nrow=2) + theme_bw() + 
+  labs(title = "Distribution of r-values across years 2010-2019", x="Correlations", y="Probability", fill="") + 
+  theme(legend.position = "none", plot.title = element_text(size=18), plot.subtitle = element_text(size=14), legend.text = element_text(size = 14), axis.title=element_text(size=14))
+
 #calculating the spearman correlation coefficient between df
 sample2df <- sample2 %>% filter(df>0)
 s210 <- sample2df %>% filter(Year==2010)
@@ -277,36 +283,57 @@ CIwhole<-rbind(CI10,CI11,CI12,CI13,CI14,CI15,CI16,CI17,CI18,CI19) #creating one 
 med <- tapply(abs(sample2$r), sample2$Year, median) #calculating medians for each these
 med <- data.frame(med)
 CIwhole <- data.frame(CIwhole, med, Year) #joining into one data frame
+colnames(CIwhole)<-c("Level","CIlow","CIhigh","median", "Year")
+#creating Figure 6 A
+CIplot <-ggplot(CIwhole, aes(x=Year, y=median, colour="Median")) + geom_line(size=1.5) + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=CIwhole, aes(x=Year, y=CIlow, colour="Confidence Interval"), size=1, alpha=0.5) + geom_line(data=CIwhole, aes(x=Year, y=CIhigh, colour="Confidence Interval"), size=1, alpha=0.5) +
+  theme_bw() + theme(legend.position = "right",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="A. Median with bootstrapped 95% Confidence Intervals ", y="Correlation", legend.title=element_blank()) + expand_limits(y=0)
 
+#percentile plot (Figure 6 B and C) by subfield
+#dividing by subfield
+dev2 <- sample2 %>% filter(subfield=="dev")
+soc2 <- sample2 %>% filter(subfield=="soc")
+#basis for the plot of quartiles by subfield across years
+#quartiles by year for developmental
+meddev <- tapply(abs(dev2$r),dev2$Year, median,na.rm=TRUE)
+q1dev <- tapply(abs(dev2$r),dev2$Year,quantile,prob=0.25, na.rm=TRUE)
+q2dev <- tapply(abs(dev2$r),dev2$Year,quantile,prob=0.75, na.rm=TRUE)
+Year <- c(2010:2019)
+devDD <- data.frame(Year,q1dev,meddev,q2dev) #joined into dataframe
+#quartiles by year for social
+medsoc <- tapply(abs(soc2$r),soc2$Year, median,na.rm=TRUE)
+q1soc <- tapply(abs(soc2$r),soc2$Year,quantile,prob=0.25, na.rm=TRUE)
+q2soc <- tapply(abs(soc2$r),soc2$Year,quantile,prob=0.75, na.rm=TRUE)
+Year <- c(2010:2019)
+socDD <- data.frame(Year,q1soc,medsoc,q2soc) #dataframe
 
-#data frame of sample 2 records without studies in sample 1
-sample_elim <- read_csv("sample2_elim_17092021.csv")
-sample_elim<- sample_elim%>%filter(abs(r)<=1) #ensuring that only realistic values remain in the sample
-#adding a column with year
-sample_elim$Year <- ifelse(endsWith(sample_elim$Dir, "10"),2010, 
-                           ifelse(endsWith(sample_elim$Dir, "11"), 2011,
-                                  ifelse(endsWith(sample_elim$Dir, "12"),2012,
-                                         ifelse(endsWith(sample_elim$Dir, "13"),2013,
-                                                ifelse(endsWith(sample_elim$Dir, "14"),2014,
-                                                       ifelse(endsWith(sample_elim$Dir, "15"),2015,
-                                                              ifelse(endsWith(sample_elim$Dir, "16"),2016,
-                                                                     ifelse(endsWith(sample_elim$Dir, "17"),2017,
-                                                                            ifelse(endsWith(sample_elim$Dir, "18"),2018,
-                                                                                   ifelse(endsWith(sample_elim$Dir, "19"),2019, 0)))))))))) #want to specify those that are nonsig and at the same time have p < 0.05
+#plot of quartiles of r by subfield across years (Figure 6 B)
+plotS1 <- ggplot(devDD, aes(x=Year, y=meddev, colour="50th percentile",linetype="developmental")) + geom_line(size=1.5)  + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=devDD, aes(x=Year, y=q1dev, colour="25th percentile"), size=1.5) + geom_line(data=devDD, aes(x=Year, y=q2dev, colour="75th percentile"), size=1.5) +
+  theme_bw() + theme(legend.position = "right",legend.box = "vertical",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="B. 25th, 50th and 75th percentiles of r-values for developmental and social psychology for years 2010-2019", y="Correlation", legend.title=element_blank()) +
+  geom_line(data=socDD, aes(x=Year, y=q1soc, colour="25th percentile", linetype="social"), size=1.5) + geom_line(data=socDD, aes(x=Year, y=medsoc, colour="50th percentile", linetype="social"), size=1.5) + geom_line(data=socDD, aes(x=Year, y=q2soc, colour="75th percentile", linetype="social"), size=1.5) + scale_y_continuous(limits=c(0,NA))
 
+#basis for plot of quartiles for degrees of freedom across years
+dev3<-sample2df%>%filter(subfield=="dev")
+soc3<-sample2df%>%filter(subfield=="soc")
+#quartiles for developmental by year
+meddev2 <- tapply(dev3$df,dev3$Year, median,na.rm=TRUE)
+q1dev2 <- tapply(dev3$df,dev3$Year,quantile,prob=0.25, na.rm=TRUE)
+q2dev2 <- tapply(dev3$df,dev3$Year,quantile,prob=0.75, na.rm=TRUE)
+Year <- c(2010:2019)
+dfdevDD<- data.frame(Year,q1dev2,meddev2,q2dev2)
+#quartiles for social by year
+medsoc2 <- tapply(soc3$df,soc3$Year, median,na.rm=TRUE)
+q1soc2 <- tapply(soc3$df,soc3$Year,quantile,prob=0.25, na.rm=TRUE)
+q2soc2 <- tapply(soc3$df,soc3$Year,quantile,prob=0.75, na.rm=TRUE)
+Year <- c(2010:2019)
+dfsocDD <- data.frame(Year,q1soc2,medsoc2,q2soc2)
 
+#plots for degrees of freedom quartiles across years (Figure 6 C)
+plotS2 <-ggplot(dfdevDD, aes(x=Year, y=meddev2, colour="50th percentile", linetype="developmental")) + geom_line(size=1.5) + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=dfdevDD, aes(x=Year, y=q1dev2, colour="25th percentile"), size=1.5) + geom_line(data=dfdevDD, aes(x=Year, y=q2dev2, colour="75th percentile"), size=1.5) +
+  theme_bw() + scale_y_log10() + theme(legend.position = "right",legend.box = "vertical",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="C. 25th, 50th and 75th percentiles of df values for developmental and social psychology for years 2010-2019", y="degrees of freedom (log10)", legend.title=element_blank()) +
+  geom_line(data=dfsocDD, aes(x=Year, y=q1soc2, colour="25th percentile", linetype="social"), size=1.5) + geom_line(data=dfsocDD, aes(x=Year, y=medsoc2, colour="50th percentile", linetype="social"), size=1.5) + geom_line(data=dfsocDD, aes(x=Year, y=q2soc2, colour="75th percentile", linetype="social"), size=1.5)
 
-#creating a column specifying subfield for sample 2
-targetdev2 <- c("\\ChildDev","\\DevPsy","\\JAppDevPsy","\\JCPP","\\JExpChildPs")
-targetsoc2<- c("\\EJP","\\JExpSocPsy","\\JPSP", "\\JResInPer", "\\SPPS")
-sample_elim$subfield <- ifelse(startsWith(sample_elim$Dir,"\\ChildDev"),"dev",
-                               ifelse(startsWith(sample_elim$Dir,"\\DevPsy"),"dev",
-                                      ifelse(startsWith(sample_elim$Dir,"\\JAppDevPsy"),"dev",
-                                             ifelse(startsWith(sample_elim$Dir,"\\JCPP"),"dev",
-                                                    ifelse(startsWith(sample_elim$Dir,"\\JExpChildPs"),"dev", "soc")))))
-
-
-
+grid.arrange(CIplot, plotS1, plotS2) #arranging together all parts of Figure 6 A, B, C
+             
 #the Figure 2 B for Sample 2
 #Sample2 percentile and cumulative percentile plot
 dfS2 <- sample2df%>%select("r","df") #from sample 2 data frame with only records containing degrees of freedom selecting r column and df column
@@ -343,6 +370,35 @@ perplot3 <- ggplot(qTable3, aes(x=q2, y=N, color="q2")) + geom_point() + scale_y
 #arranging both plots together
 grid.arrange(perplot1, perplot3, ncol=2) #arranging together Figure 2 A and B
              
+
+#data frame of sample 2 records without studies in sample 1
+sample_elim <- read_csv("sample2_elim_17092021.csv")
+sample_elim<- sample_elim%>%filter(abs(r)<=1) #ensuring that only realistic values remain in the sample
+#adding a column with year
+sample_elim$Year <- ifelse(endsWith(sample_elim$Dir, "10"),2010, 
+                           ifelse(endsWith(sample_elim$Dir, "11"), 2011,
+                                  ifelse(endsWith(sample_elim$Dir, "12"),2012,
+                                         ifelse(endsWith(sample_elim$Dir, "13"),2013,
+                                                ifelse(endsWith(sample_elim$Dir, "14"),2014,
+                                                       ifelse(endsWith(sample_elim$Dir, "15"),2015,
+                                                              ifelse(endsWith(sample_elim$Dir, "16"),2016,
+                                                                     ifelse(endsWith(sample_elim$Dir, "17"),2017,
+                                                                            ifelse(endsWith(sample_elim$Dir, "18"),2018,
+                                                                                   ifelse(endsWith(sample_elim$Dir, "19"),2019, 0)))))))))) #want to specify those that are nonsig and at the same time have p < 0.05
+
+
+
+#creating a column specifying subfield for sample 2
+targetdev2 <- c("\\ChildDev","\\DevPsy","\\JAppDevPsy","\\JCPP","\\JExpChildPs")
+targetsoc2<- c("\\EJP","\\JExpSocPsy","\\JPSP", "\\JResInPer", "\\SPPS")
+sample_elim$subfield <- ifelse(startsWith(sample_elim$Dir,"\\ChildDev"),"dev",
+                               ifelse(startsWith(sample_elim$Dir,"\\DevPsy"),"dev",
+                                      ifelse(startsWith(sample_elim$Dir,"\\JAppDevPsy"),"dev",
+                                             ifelse(startsWith(sample_elim$Dir,"\\JCPP"),"dev",
+                                                    ifelse(startsWith(sample_elim$Dir,"\\JExpChildPs"),"dev", "soc")))))
+
+
+
              
 #OVERLAP BETWEEN SAMPLES
 #creating a df of the overlap in sample 2
@@ -357,12 +413,20 @@ pages<-c(331,267,555,9,172,96,162,69,211,135,528,391,379,85,291,771,311,302,361,
 nrow(s1text %>% filter(PageN != pages))
 s1text_filt<-filter(s1text,(PageN %in% pages == FALSE))
 s1text_filt <-filter(s1text_filt,(FirstAuthor != "Borkenau"))
-#density plot showing the values from overlapping studies for both samples
+#density plot showing the values from overlapping studies for both samples (Figure 1)
 ggplot(s1text_filt, aes(x=r, col="Sample 1"))+ geom_density()+ geom_density(data=s2overlap,aes(x=abs(r), col="Sample 2")) +
   labs(title="Density distribution of the values from studies detected within both samples", 
        x="Correlation") +
   theme(plot.title = element_text(size=18), 
         legend.text = element_text(size = 14), axis.title=element_text(size=14)) + theme_bw()
+             
+             
+##VALIDITY CHECK FOR SAMPLE 2
+#sampling 20 random papers for validity check
+val_check <- sample2[sample(nrow(sample2), 20), ]
+val_check <- val_check$File
+VC <- sample2 %>% filter(File %in% val_check)
+View(VC)
 
 
 
