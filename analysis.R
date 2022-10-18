@@ -419,6 +419,73 @@ ggplot(s1text_filt, aes(x=r, col="Sample 1"))+ geom_density()+ geom_density(data
        x="Correlation") +
   theme(plot.title = element_text(size=18), 
         legend.text = element_text(size = 14), axis.title=element_text(size=14)) + theme_bw()
+
+#Integral of nonsignificant effect sizes theoretical (visualized in Figure 5)
+#theoretical distribution of nonsignificant correlations
+
+AlphaPer2 <- 0.025
+DF <- seq(1,501,by=2) # df
+
+tCrit <- tinv(AlphaPer2, DF) # compute critical t(df) for these df-s
+
+# D( crit t (alpha) ) :: t -> D value
+#CritD <-    tCrit / (sqrt(DF+1)) # critical D value for 1-sample t-test
+critR <- tCrit/sqrt(DF+tCrit^2) #critical r value
+critR<-abs(critR)
+
+#one-sided
+AlphaPer2_os <- 0.05
+tCrit_os <- tinv(AlphaPer2_os, DF) # compute critical t(df) for these df-s
+
+# D( crit t (alpha) ) :: t -> D value
+#CritD <-    tCrit / (sqrt(DF+1)) # critical D value for 1-sample t-test
+critR_os <- tCrit_os/sqrt(DF+tCrit_os^2)
+critR_os<-abs(critR_os)
+#estimated mean H0 effect size: integrating from 0 to critical(t|df)
+# Expected value of r = INTEGRAL of [ r value * the probability of the r value ]
+DV_pr <-function(t,df) {(t/sqrt(df+t^2)) * (dt(t,df)) } # r(t value) * pr(t value)
+
+R_H0ns <-vector("numeric")
+for (d in 1:numel(DF)){
+  # computing the integral of function from A to B
+  # computing the integral from r=0 to r=critical value
+  R_H0ns[d]  <- integrate(function(x)DV_pr( x, DF[d])   ,0,tCrit[d])} # mean H0 effect size | N.S. result
+R_H0ns2<-as.numeric(unlist(R_H0ns))
+ns_sim <- data.frame(DF, critR, R_H0ns2)
+
+R_H0ns3 <-vector("numeric")
+for (d in 1:numel(DF)){
+  # computing the integral of function from A to B
+  # computing the integral from r=0 to r=critical value
+  R_H0ns3[d]  <- integrate(function(x)DV_pr( x, DF[d])   ,0,tCrit_os[d])} # mean H0 effect size | N.S. result
+R_H0ns4<-as.numeric(unlist(R_H0ns3))
+ns_sim2 <- data.frame(DF, critR, R_H0ns4)
+
+  #+ geom_point(data=median_ns, aes(x=q2, y=df, color="r median (reported as nonsignificant)"), size=0.5) + xlim(0,1) + ylim(0,100)
+
+#ggplot(data=ns_sim, aes(x=critR, y=DF)) + geom_line(aes(x=critR_os, linetype="r critical one-sided"))+ geom_line(aes(linetype="r critical")) + geom_line(data=ns_sim, aes(x=R_H0ns2, y=DF, linetype="r if H0 is true given df"))+ xlim(0,0.5) + ylim(0,500) + labs(title="The simulated and real mean of nonsignificant r-values", x="Correlation",y="Degrees of freedom") + geom_point(data=median_ns, aes(x=mean, y=df, color="r mean (reported as nonsignificant)"), size=0.5) + xlim(0,1) + ylim(0,100)
+
+#computing the mean of nonsignificant correlations from Sample 1
+ns_real <- nonsig_only%>%select("Correlation","N")%>%filter(N>0)
+ns_real <- mutate(ns_real, df = N-2) #creating df column from N 
+colnames(ns_real)<-c("rabs","N","df")
+ns_real_df <- ns_real %>% arrange(df) #creating dataframe arranged by df
+
+ns_real_df$df<-as.factor(ns_real_df$df)
+
+ns_mean<-tapply(ns_real_df$rabs,ns_real_df$df, mean,na.rm=TRUE) #calculating mean value for each df
+#ns_mean<-rownames_to_column(ns_mean)
+ns_mean <- cbind(df = rownames(ns_mean), ns_mean)
+ns_mean<-as.tibble(ns_mean)
+
+colnames(ns_mean)<-c("df","r_mean")
+ns_mean$r_mean<-as.numeric(ns_mean$r_mean)
+ns_mean$df<-as.numeric(ns_mean$df)
+
+#plot
+ggplot(data=ns_sim, aes(x=critR, y=DF)) + geom_line(aes(x=critR_os, linetype="r critical one-sided"))+ geom_line(aes(linetype="r critical two-sided")) + geom_line(data=ns_sim, aes(x=R_H0ns2, y=DF, linetype="r if H0 is true given df"))+ xlim(0,0.5) + ylim(0,500)+ geom_point(data=ns_mean, aes(x=r_mean, y=df, color="mean of observed nonsignificant correlation effect sizes")) + 
+  labs(title="The expected value of true null effects vs. measured values", x="Correlation (r-value)",y="Degrees of freedom") + theme_bw() + theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), 
+                                                                                                                                              legend.text = element_text(size = 14), axis.title=element_text(size=14)) + guides(color=guide_legend(title=""), linetype=guide_legend(title="")) +theme(legend.spacing = unit(-17,'pt'),legend.margin = margin(t=0,b=0,unit='pt'),legend.background = element_blank())
              
              
 ##VALIDITY CHECK FOR SAMPLE 2
