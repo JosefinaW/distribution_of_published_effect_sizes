@@ -59,7 +59,7 @@ colnames(data.p2)[13] <- ("InPaper")
 colnames(data.p2)[14] <- ("InTable")
 colnames(data.p2)[15] <- ("type_p")
 colnames(data.p2)[17] <- ("CorrType")
-colnames(excl_non_spec)[10] <-("tpf")
+colnames(data.p1)[10] <-("tpf")
 
 
 #changing corr and signif columns into numeric values
@@ -116,7 +116,7 @@ peq <- df%>%filter(type_p==1)
 #Manuscript figures
 #percentile and cumulative percentile plot for Sample 1 (= Figure 2 A )
 
-dfS1 <- df%>%select("Correlation","N")%>%filter(N>0)
+dfS1 <- df%>%select("Correlation","N")%>%filter(N>0) #selecting only relevant columns
 dfS1 <- mutate(dfS1, df = N-2) #creating degrees of freedom column from N 
 colnames(dfS1)<-c("rabs","N","df") #change column names
 chdf3 <- dfS1 %>% arrange(df) #creating dataframe arranged by df
@@ -191,7 +191,7 @@ sample2$subfield <- ifelse(startsWith(sample2$Dir,"\\ChildDev"),"dev",
                                                 ifelse(startsWith(sample2$Dir,"\\JExpChildPs"),"dev", "soc")))))
 
 
-#histogram of r-values for each year (Figure 5)
+#histogram of r-values for each year (Figure 6)
 plot1<-ggplot(sample2, aes(x=abs(r), y=(..count..)/sum(..count..), fill="Year")) + geom_histogram(bins=100) + facet_wrap(~Year, nrow=2) + theme_bw() + 
   labs(title = "Distribution of r-values across years 2010-2019", x="Correlations", y="Probability", fill="") + 
   theme(legend.position = "none", plot.title = element_text(size=18), plot.subtitle = element_text(size=14), legend.text = element_text(size = 14), axis.title=element_text(size=14))
@@ -225,7 +225,7 @@ spearmanCI(abs(s210$r), s210$df, level=0.95)
 sample2df$Exact_P <- mapply(CorToP, r=abs(sample2df$r), n=(sample2df$df+2)) 
 sample2df$OSExact_P <- mapply(OSCorToP, r=abs(sample2df$r), n=(sample2df$df+2))
 
-#calculating bootstrapped 95% confidence intervals for the median correlation values in different years for Figure 6 A
+#calculating bootstrapped 95% confidence intervals for the median correlation values in different years for Figure 7 A
 install.packages("boot")
 library(boot)
 s210 <- sample2%>%filter(Year==2010)
@@ -284,11 +284,11 @@ med <- tapply(abs(sample2$r), sample2$Year, median) #calculating medians for eac
 med <- data.frame(med)
 CIwhole <- data.frame(CIwhole, med, Year) #joining into one data frame
 colnames(CIwhole)<-c("Level","CIlow","CIhigh","median", "Year")
-#creating Figure 6 A
+#creating Figure 7 A
 CIplot <-ggplot(CIwhole, aes(x=Year, y=median, colour="Median")) + geom_line(size=1.5) + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=CIwhole, aes(x=Year, y=CIlow, colour="Confidence Interval"), size=1, alpha=0.5) + geom_line(data=CIwhole, aes(x=Year, y=CIhigh, colour="Confidence Interval"), size=1, alpha=0.5) +
   theme_bw() + theme(legend.position = "right",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="A. Median with bootstrapped 95% Confidence Intervals ", y="Correlation", legend.title=element_blank()) + expand_limits(y=0)
 
-#percentile plot (Figure 6 B and C) by subfield
+#percentile plot (Figure 7 B and C) by subfield
 #dividing by subfield
 dev2 <- sample2 %>% filter(subfield=="dev")
 soc2 <- sample2 %>% filter(subfield=="soc")
@@ -306,7 +306,7 @@ q2soc <- tapply(abs(soc2$r),soc2$Year,quantile,prob=0.75, na.rm=TRUE)
 Year <- c(2010:2019)
 socDD <- data.frame(Year,q1soc,medsoc,q2soc) #dataframe
 
-#plot of quartiles of r by subfield across years (Figure 6 B)
+#plot of quartiles of r by subfield across years (Figure 7 B)
 plotS1 <- ggplot(devDD, aes(x=Year, y=meddev, colour="50th percentile",linetype="developmental")) + geom_line(size=1.5)  + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=devDD, aes(x=Year, y=q1dev, colour="25th percentile"), size=1.5) + geom_line(data=devDD, aes(x=Year, y=q2dev, colour="75th percentile"), size=1.5) +
   theme_bw() + theme(legend.position = "right",legend.box = "vertical",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="B. 25th, 50th and 75th percentiles of r-values for developmental and social psychology for years 2010-2019", y="Correlation", legend.title=element_blank()) +
   geom_line(data=socDD, aes(x=Year, y=q1soc, colour="25th percentile", linetype="social"), size=1.5) + geom_line(data=socDD, aes(x=Year, y=medsoc, colour="50th percentile", linetype="social"), size=1.5) + geom_line(data=socDD, aes(x=Year, y=q2soc, colour="75th percentile", linetype="social"), size=1.5) + scale_y_continuous(limits=c(0,NA))
@@ -327,12 +327,12 @@ q2soc2 <- tapply(soc3$df,soc3$Year,quantile,prob=0.75, na.rm=TRUE)
 Year <- c(2010:2019)
 dfsocDD <- data.frame(Year,q1soc2,medsoc2,q2soc2)
 
-#plots for degrees of freedom quartiles across years (Figure 6 C)
+#plots for degrees of freedom quartiles across years (Figure 7 C)
 plotS2 <-ggplot(dfdevDD, aes(x=Year, y=meddev2, colour="50th percentile", linetype="developmental")) + geom_line(size=1.5) + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=dfdevDD, aes(x=Year, y=q1dev2, colour="25th percentile"), size=1.5) + geom_line(data=dfdevDD, aes(x=Year, y=q2dev2, colour="75th percentile"), size=1.5) +
   theme_bw() + scale_y_log10() + theme(legend.position = "right",legend.box = "vertical",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="C. 25th, 50th and 75th percentiles of df values for developmental and social psychology for years 2010-2019", y="degrees of freedom (log10)", legend.title=element_blank()) +
   geom_line(data=dfsocDD, aes(x=Year, y=q1soc2, colour="25th percentile", linetype="social"), size=1.5) + geom_line(data=dfsocDD, aes(x=Year, y=medsoc2, colour="50th percentile", linetype="social"), size=1.5) + geom_line(data=dfsocDD, aes(x=Year, y=q2soc2, colour="75th percentile", linetype="social"), size=1.5)
 
-grid.arrange(CIplot, plotS1, plotS2) #arranging together all parts of Figure 6 A, B, C
+grid.arrange(CIplot, plotS1, plotS2) #arranging together all parts of Figure 7 A, B, C
              
 #the Figure 2 B for Sample 2
 #Sample2 percentile and cumulative percentile plot
@@ -461,10 +461,6 @@ for (d in 1:numel(DF)){
 R_H0ns4<-as.numeric(unlist(R_H0ns3))
 ns_sim2 <- data.frame(DF, critR, R_H0ns4)
 
-  #+ geom_point(data=median_ns, aes(x=q2, y=df, color="r median (reported as nonsignificant)"), size=0.5) + xlim(0,1) + ylim(0,100)
-
-#ggplot(data=ns_sim, aes(x=critR, y=DF)) + geom_line(aes(x=critR_os, linetype="r critical one-sided"))+ geom_line(aes(linetype="r critical")) + geom_line(data=ns_sim, aes(x=R_H0ns2, y=DF, linetype="r if H0 is true given df"))+ xlim(0,0.5) + ylim(0,500) + labs(title="The simulated and real mean of nonsignificant r-values", x="Correlation",y="Degrees of freedom") + geom_point(data=median_ns, aes(x=mean, y=df, color="r mean (reported as nonsignificant)"), size=0.5) + xlim(0,1) + ylim(0,100)
-
 #computing the mean of nonsignificant correlations from Sample 1
 ns_real <- nonsig_only%>%select("Correlation","N")%>%filter(N>0)
 ns_real <- mutate(ns_real, df = N-2) #creating df column from N 
@@ -474,13 +470,12 @@ ns_real_df <- ns_real %>% arrange(df) #creating dataframe arranged by df
 ns_real_df$df<-as.factor(ns_real_df$df)
 
 ns_mean<-tapply(ns_real_df$rabs,ns_real_df$df, mean,na.rm=TRUE) #calculating mean value for each df
-#ns_mean<-rownames_to_column(ns_mean)
-ns_mean <- cbind(df = rownames(ns_mean), ns_mean)
-ns_mean<-as.tibble(ns_mean)
+ns_mean <- cbind(df = rownames(ns_mean), ns_mean) #rownames (df) become a column
+ns_mean<-as.tibble(ns_mean) #as dataframe
 
-colnames(ns_mean)<-c("df","r_mean")
-ns_mean$r_mean<-as.numeric(ns_mean$r_mean)
-ns_mean$df<-as.numeric(ns_mean$df)
+colnames(ns_mean)<-c("df","r_mean") #changing column names
+ns_mean$r_mean<-as.numeric(ns_mean$r_mean) #column r_mean is numeric
+ns_mean$df<-as.numeric(ns_mean$df) #column df is numeric
 
 #plot
 ggplot(data=ns_sim, aes(x=critR, y=DF)) + geom_line(aes(x=critR_os, linetype="r critical one-sided"))+ geom_line(aes(linetype="r critical two-sided")) + geom_line(data=ns_sim, aes(x=R_H0ns2, y=DF, linetype="r if H0 is true given df"))+ xlim(0,0.5) + ylim(0,500)+ geom_point(data=ns_mean, aes(x=r_mean, y=df, color="mean of observed nonsignificant correlation effect sizes")) + 
