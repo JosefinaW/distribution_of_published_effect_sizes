@@ -1,13 +1,13 @@
 # distribution_of_published_effect_sizes
 Data and analysis for the paper "Published effect sizes in Social and Developmental Psychology"
 Brief summary of dataset contents, contextualized in experimental procedures and results.
-Datasets contain manually collected correlation effect sizes (Data260121p1.csv and Data260121p2.csv) and computer extracted correlation effect sizes (CorrResults140820.csv and sample2_elim_17092021.csv) from the fields of social and developmental psychology.
+Datasets contain manually collected correlation effect sizes (Data260121p1.csv and Data260121p2.csv) and computer extracted correlation effect sizes (CorrResults140820.csv and sample2_elim_17092021.csv) from the fields of social and developmental psychology.  
 
 
 ## Description of the Data and file structure
-Csv files Data260121p1.csv and Data260121p2.csv can be merged together using the StudyID variables. 
-In Data260121p1.csv each row refers to one study and the files includes following columns:
-StudyID - unique identifier of each study
+Csv files Data260121p1.csv and Data260121p2.csv can be merged together using the StudyID variables.   
+In Data260121p1.csv each row refers to one study and the files includes following columns:  
+StudyID - unique identifier of each study  
 OwnData -study used external dataset (0) or own data (1)
 Journal - journal acronym
 Year - year of publication
