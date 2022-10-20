@@ -44,8 +44,6 @@ OSCorToP <- function(r,n){
   P_value <- pt(T_value, n-2, lower=FALSE)
   return(P_value)}
 
-
-
 ##SAMPLE1 data
 #data frame preparation
 #the data are loaded from two csv files
@@ -96,7 +94,7 @@ non_spec <- df %>%
 #creating df containing only reportedly significant values
 signific_only <- excl_non_spec %>% filter (Nonsignificant==0)
 
-#misreporting of significant values - this was not part of the manuscript but was used to check the reason for over the significance boundary values in Figure 3 A and B.
+#misreporting of significant values - this was used to check the reason for over the significance boundary values in Figure 3 A and B.
 P_larger_Sig <- df %>%
   filter(type_p != 3) %>% filter(Nonsignificant != 1) %>%
   filter(SignificanceLevel < OSExact_P) #or filter(SignificanceLevel < Exact_P)
@@ -131,20 +129,19 @@ for (x in unique(chdf3$df)) {
 }
 colnames(qTable3) <- c("q0","q1","q2","q3","q4","df") #change column names for quantiles and df
 #calculating median values for Figure 2 A
-chdf3 <- chdf3 %>% mutate(id = row_number()) 
-chdf3$category <- cut(chdf3$id, seq(0,12406,1000), labels=c(1:12))
-chdf_median <- chdf3%>%
-  group_by(category)%>% 
-  summarise(median=median(rabs), dfmedian=median(df))
-chdf_median <- chdf_median%>%select(dfmedian, median)
+chdf <- chdf %>% dplyr::mutate(id = row_number()) #id column as row number
+chdf$category <- cut(chdf$id, seq(0,12406,1000), labels=c(1:12)) #divide into groups by 1000 values 
+chdf_median<-setDT(chdf)[,list(median=median(rabs),dfmedian=median(df)), by=category] #calculate median value for each group
+chdf_median <- chdf_median%>%select(dfmedian, median) #select only relevant columns
 
 #plot for the cumulative percentiles (Figure 2 A) for Sample 1
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 perplot1 <- ggplot(qTable3, aes(x=q2, y=N, color="q2")) + geom_point() + scale_y_log10() + geom_point(data=qTable3, aes(x=q1,y=N, color="q1")) + geom_point(data=qTable3, aes(x=q3,y=N, color="q3")) + theme_bw() + 
   labs(title="A. Cumulative 25th, 50th and 75th percentiles of correlations \n by df (Sample 1)", 
        x="Correlation",y="degrees of freedom (log10)") +
   theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), 
         legend.text = element_text(size = 14), axis.title=element_text(size=14), legend.position = "none") + 
-  scale_color_discrete(name = "", labels=c("25th percentile","50th percentile", "75th percentile")) + geom_point(data=chdf_median, aes(x=median, y=dfmedian), color="black", shape=17, size=3)
+  scale_color_discrete(name = "", labels=c("25th percentile","50th percentile", "75th percentile")) + geom_point(data=chdf_median, aes(x=median, y=dfmedian), color="black", shape=17, size=3) + scale_colour_manual(values=c("#E69F00", "#56B4E9", "#009E73"))
 
 
 #Figure 4 A, B and C
@@ -221,7 +218,7 @@ cor.test(abs(s219$r), s219$df, method = "spearman")
 #calculating CIs for the correlations
 spearmanCI(abs(s210$r), s210$df, level=0.95)
 
-#calculating exact p-values (two-sided and one-sided)
+#calculating exact p-values (two-sided and one-sided, using the function specified at the start of the code)
 sample2df$Exact_P <- mapply(CorToP, r=abs(sample2df$r), n=(sample2df$df+2)) 
 sample2df$OSExact_P <- mapply(OSCorToP, r=abs(sample2df$r), n=(sample2df$df+2))
 
@@ -288,7 +285,7 @@ colnames(CIwhole)<-c("Level","CIlow","CIhigh","median", "Year")
 CIplot <-ggplot(CIwhole, aes(x=Year, y=median, colour="Median")) + geom_line(size=1.5) + scale_x_continuous(breaks = c(2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)) + geom_line(data=CIwhole, aes(x=Year, y=CIlow, colour="Confidence Interval"), size=1, alpha=0.5) + geom_line(data=CIwhole, aes(x=Year, y=CIhigh, colour="Confidence Interval"), size=1, alpha=0.5) +
   theme_bw() + theme(legend.position = "right",plot.title = element_text(size=18), legend.title = element_blank(), legend.text = element_text(size = 14), axis.title=element_text(size=14)) + labs(title="A. Median with bootstrapped 95% Confidence Intervals ", y="Correlation", legend.title=element_blank()) + expand_limits(y=0)
 
-#percentile plot (Figure 7 B and C) by subfield
+#percentile plot (Figure 7 B and C) by subfield preparation of data
 #dividing by subfield
 dev2 <- sample2 %>% filter(subfield=="dev")
 soc2 <- sample2 %>% filter(subfield=="soc")
@@ -350,22 +347,20 @@ for (x in unique(chdf3$df)) {
 }
 colnames(qTable3) <- c("q0","q1","q2","q3","q4","N")
 
-chdf3 <- chdf3 %>% mutate(id = row_number()) #row numbers as id of the rows for use in the below operation
+chdf3 <- chdf3 %>% dplyr::mutate(id = row_number()) #row numbers as id of the rows for use in the below operation
 #calculating the medians for each 300 values going from the lowest degrees of freedom
 chdf3$category <- cut(chdf3$id, seq(0,3292,300), labels=c(1:10))
-View(chdf3)
-chdf_median <- chdf3%>%
-  group_by(category)%>% 
-  summarise(median=median(rabs), dfmedian=median(df))
-chdf_median <- chdf_median%>%select(dfmedian, median) #data frame with medians for every 300 values
 
+chdf_median2<-setDT(chdf3)[,list(median=median(rabs),dfmedian=median(df)), by=category]
+chdf_median2 <- chdf_median2%>%select(dfmedian, median) #data frame with medians for every 300 values
+             
 #plots for the cumulative percentiles: first one is a scatter plot showing the exact values
 perplot3 <- ggplot(qTable3, aes(x=q2, y=N, color="q2")) + geom_point() + scale_y_log10() + geom_point(data=qTable3, aes(x=q1,y=N, color="q1")) + geom_point(data=qTable3, aes(x=q3,y=N, color="q3")) + theme_bw() + 
   labs(title="B. Cumulative 25th, 50th and 75th percentiles of correlations \n by df (Sample 2)", 
        x="Correlation",y="degrees of freedom (log10)") +
   theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), 
         legend.text = element_text(size = 14), axis.title=element_text(size=14), legend.position = "none") + 
-  scale_color_discrete(name = "", labels=c("25th percentile","50th percentile", "75th percentile")) + geom_point(data=chdf_median, aes(x=median, y=dfmedian), color="black", shape=17, size=3)
+  scale_color_discrete(name = "", labels=c("25th percentile","50th percentile", "75th percentile")) + geom_point(data=chdf_median2, aes(x=median, y=dfmedian), color="black", shape=17, size=3) + scale_colour_manual(values=c("#E69F00", "#56B4E9", "#009E73"))
 
 #arranging both plots together
 grid.arrange(perplot1, perplot3, ncol=2) #arranging together Figure 2 A and B
@@ -423,7 +418,7 @@ ggplot(s1text_filt, aes(x=r, col="Sample 1"))+ geom_density()+ geom_density(data
 #Integral of nonsignificant effect sizes theoretical (visualized in Figure 5)
 #theoretical distribution of nonsignificant correlations
 
-AlphaPer2 <- 0.025
+AlphaPer2 <- 0.025 #two=sided alpha
 DF <- seq(1,501,by=2) # df
 
 tCrit <- tinv(AlphaPer2, DF) # compute critical t(df) for these df-s
@@ -477,7 +472,7 @@ colnames(ns_mean)<-c("df","r_mean") #changing column names
 ns_mean$r_mean<-as.numeric(ns_mean$r_mean) #column r_mean is numeric
 ns_mean$df<-as.numeric(ns_mean$df) #column df is numeric
 
-#plot
+#plot (Figure 5)
 ggplot(data=ns_sim, aes(x=critR, y=DF)) + geom_line(aes(x=critR_os, linetype="r critical one-sided"))+ geom_line(aes(linetype="r critical two-sided")) + geom_line(data=ns_sim, aes(x=R_H0ns2, y=DF, linetype="r if H0 is true given df"))+ xlim(0,0.5) + ylim(0,500)+ geom_point(data=ns_mean, aes(x=r_mean, y=df, color="mean of observed nonsignificant correlation effect sizes")) + 
   labs(title="The expected value of true null effects vs. measured values", x="Correlation (r-value)",y="Degrees of freedom") + theme_bw() + theme(plot.title = element_text(size=18), plot.subtitle = element_text(size=14), 
                                                                                                                                               legend.text = element_text(size = 14), axis.title=element_text(size=14)) + guides(color=guide_legend(title=""), linetype=guide_legend(title="")) +theme(legend.spacing = unit(-17,'pt'),legend.margin = margin(t=0,b=0,unit='pt'),legend.background = element_blank())
